@@ -20,6 +20,7 @@
 #include "main.h"
 #include "adc.h"
 #include "can.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -31,6 +32,7 @@
 #include "gpio.h"
 #include "stdio.h"
 #include "ids830can.h"
+#include "fourier_series_traj_exciting.h"
 
 /* USER CODE END Includes */
 
@@ -96,8 +98,10 @@ int main(void)
   MX_CAN_Init();
   MX_USART1_UART_Init();
   MX_ADC1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 	CAN_Filter_Init();
+	HAL_TIM_Base_Start_IT(&htim2);
 	
  //运行电机motor1~motor5
  	for(int i=1;i<6;i++)
@@ -113,31 +117,31 @@ int main(void)
 // 		HAL_Delay(1000);
 // 	}
 	
-//读取编码器位置，并将编码器零偏值写入ROM作为电机零点
-	for(int i=2;i<6;i++)
-	{
-		read_encoder(i);
-		uint16_t encoderOffset = 0;
-		*(uint8_t *)(&encoderOffset) = CAN_motor_data[6];
-		*((uint8_t *)(&encoderOffset)+1) = CAN_motor_data[7];
-		write_encoder_offset(i, encoderOffset);
-	}
-	printf("\nset zero point Success!!\r\n");
-	//读取单圈角度
-	for(int i=2;i<6;i++)
-	{
-		read_angle_single(i);
-		printf("\nGet %d singleAngle Success!!\r\n", i);
-		HAL_Delay(1000);
-	}
-	printf("\nGet singleAngle Success!!\r\n");
-	//读取多圈角度
-	for(int i=2;i<6;i++)
-	{
-		read_angle(i);
-		printf("\nGet %d multiangle Success!!\r\n", i);
-	}
-	printf("\nGet multiangle Success!!\r\n");
+////读取编码器位置，并将编码器零偏值写入ROM作为电机零点
+//	for(int i=2;i<6;i++)
+//	{
+//		read_encoder(i);
+//		uint16_t encoderOffset = 0;
+//		*(uint8_t *)(&encoderOffset) = CAN_motor_data[6];
+//		*((uint8_t *)(&encoderOffset)+1) = CAN_motor_data[7];
+//		write_encoder_offset(i, encoderOffset);
+//	}
+//	printf("\nset zero point Success!!\r\n");
+//	//读取单圈角度
+//	for(int i=2;i<6;i++)
+//	{
+//		read_angle_single(i);
+//		printf("\nGet %d singleAngle Success!!\r\n", i);
+//		HAL_Delay(1000);
+//	}
+//	printf("\nGet singleAngle Success!!\r\n");
+//	//读取多圈角度
+//	for(int i=2;i<6;i++)
+//	{
+//		read_angle(i);
+//		printf("\nGet %d multiangle Success!!\r\n", i);
+//	}
+//	printf("\nGet multiangle Success!!\r\n");
 
 //	printf("\nStart linear actuator!!\n");
 
@@ -147,35 +151,45 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		angle_close_loop_with_speed(2, 0, 500);
-		angle_close_loop_with_speed(3, 0, 1000);
-		angle_close_loop_with_speed(4, 0, 500);
-		angle_close_loop_with_speed(5, 0, 1000);
-		HAL_Delay(10000);
-//		angle_close_loop_with_speed(1, 90, 900);
-		angle_close_loop_with_speed(2, 90, 500);
-		angle_close_loop_with_speed(3, 90, 1000);
-		angle_close_loop_with_speed(4, 90, 500);
-		angle_close_loop_with_speed(5, 90, 1000);
-		HAL_Delay(10000);
-//		angle_close_loop_with_speed(1, 0, 900);
-		angle_close_loop_with_speed(2, 0, 500);
-		angle_close_loop_with_speed(3, 0, 1000);
-		angle_close_loop_with_speed(4, 0, 500);
-		angle_close_loop_with_speed(5, 0, 1000);
-		HAL_Delay(10000);
-//		angle_close_loop_with_speed(1, -90, 900);
-		angle_close_loop_with_speed(2, -90, 500);
-		angle_close_loop_with_speed(3, -90, 1000);
-		angle_close_loop_with_speed(4, -90, 500);
-		angle_close_loop_with_speed(5, -90, 1000);
-		HAL_Delay(10000);
-//		angle_close_loop_with_speed(1, 0, 900);
-		angle_close_loop_with_speed(2, 0, 500);
-		angle_close_loop_with_speed(3, 0, 1000);
-		angle_close_loop_with_speed(4, 0, 500);
-		angle_close_loop_with_speed(5, 0, 1000);
-		HAL_Delay(10000);
+		for(int i=1; i<=6; i++)
+		{
+			if(i == 1)
+			{
+				LinearActuator_read_position(i);
+				LinearActuator_read_CurrentandSpeed(i);
+			}
+			else
+				read_status2(i);
+		}
+//		angle_close_loop_with_speed(2, 0, 500);
+//		angle_close_loop_with_speed(3, 0, 1000);
+//		angle_close_loop_with_speed(4, 0, 500);
+//		angle_close_loop_with_speed(5, 0, 1000);
+//		HAL_Delay(10000);
+////		angle_close_loop_with_speed(1, 90, 900);
+//		angle_close_loop_with_speed(2, 90, 500);
+//		angle_close_loop_with_speed(3, 90, 1000);
+//		angle_close_loop_with_speed(4, 90, 500);
+//		angle_close_loop_with_speed(5, 90, 1000);
+//		HAL_Delay(10000);
+////		angle_close_loop_with_speed(1, 0, 900);
+//		angle_close_loop_with_speed(2, 0, 500);
+//		angle_close_loop_with_speed(3, 0, 1000);
+//		angle_close_loop_with_speed(4, 0, 500);
+//		angle_close_loop_with_speed(5, 0, 1000);
+//		HAL_Delay(10000);
+////		angle_close_loop_with_speed(1, -90, 900);
+//		angle_close_loop_with_speed(2, -90, 500);
+//		angle_close_loop_with_speed(3, -90, 1000);
+//		angle_close_loop_with_speed(4, -90, 500);
+//		angle_close_loop_with_speed(5, -90, 1000);
+//		HAL_Delay(10000);
+////		angle_close_loop_with_speed(1, 0, 900);
+//		angle_close_loop_with_speed(2, 0, 500);
+//		angle_close_loop_with_speed(3, 0, 1000);
+//		angle_close_loop_with_speed(4, 0, 500);
+//		angle_close_loop_with_speed(5, 0, 1000);
+//		HAL_Delay(10000);
 
 //    printf("\n linear actuator run start!!\n");
 //    LinearActuator_startRun_maxspeed_position(6, 3000, 200000);

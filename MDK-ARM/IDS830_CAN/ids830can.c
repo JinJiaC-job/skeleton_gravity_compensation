@@ -81,3 +81,31 @@ void LinearActuator_startRun_maxspeed_position(uint8_t id, int16_t maxspeed, flo
 	writeData_pointTopoint(id, 0x00, 0x50, *((int16_t *)(& position)+1), 0x05, *(int16_t *)(& position));
 }
 
+void LinearActuator_read_position(uint8_t id)
+{
+	float LinAcr_position = 0;
+	readData_pointTopoint(id, 0x00, 0xe8, 0x0000, 0xe9, 0x0000);
+	*(uint8_t *)(&LinAcr_position) = CAN_motor_data[7];
+	*((uint8_t *)(&LinAcr_position)+1) = CAN_motor_data[6];
+	*((uint8_t *)(&LinAcr_position)+2) = CAN_motor_data[4];
+	*((uint8_t *)(&LinAcr_position)+3) = CAN_motor_data[3];
+	LinAcr_position = LinAcr_position/2500;
+//	return  LinAcr_position;
+	printf("LinearActuator_position: %.3f mm\r\n", LinAcr_position);
+}
+
+void LinearActuator_read_CurrentandSpeed(uint8_t id)
+{
+	float LinAcr_current = 0;
+	float LinAcr_speed = 0;
+	
+	readData_pointTopoint(id, 0x00, 0xe2, 0x0000, 0xe4, 0x0000);
+	*(uint8_t *)(&LinAcr_current) = CAN_motor_data[4];
+	*((uint8_t *)(&LinAcr_current)+1) = CAN_motor_data[3];
+	
+	*(uint8_t *)(&LinAcr_speed) = CAN_motor_data[7];
+	*((uint8_t *)(&LinAcr_speed)+1) = CAN_motor_data[6];
+}
+
+
+

@@ -482,6 +482,7 @@ void clear_error(uint8_t id){
 void read_status2(uint8_t id){
     uint8_t buf[LEN] = {0x9C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     can_send(buf, id);
+		HAL_Delay(command_interval_time);
 }
 
 

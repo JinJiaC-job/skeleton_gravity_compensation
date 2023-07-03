@@ -167,7 +167,7 @@ void CAN_Filter_Init(void)
 ****************************************************************************** */
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
-  uint8_t aRxData[8];
+  uint8_t aRxData[8]={0};
   if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &hCAN1_RxHeader, aRxData) == HAL_OK)
     {
       printf("\nGet Rx Message Success!!\nData:");

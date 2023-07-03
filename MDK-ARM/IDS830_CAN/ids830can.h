@@ -103,6 +103,17 @@ void LinearActuator_speedmode_runtime(uint8_t id, uint16_t runtime);
 发送目标位置，地址 1 位置高 16 位，地址 2 位置低 16 位。接收正确原数据返回*/
 void LinearActuator_startRun_maxspeed_position(uint8_t id, int16_t maxspeed, float position);
 
+/*
+电缸读取位置反馈信息
+*/
+void LinearActuator_read_position(uint8_t id);
+
+/*
+电缸读取输出电流和转速
+读取电流功能码：0xe2  实际电流要缩小100倍
+读取转速功能码：0xe4  返回的数字量16384对应实际转速6000rpm
+*/
+void LinearActuator_read_CurrentandSpeed(uint8_t id);
 
 
 #endif

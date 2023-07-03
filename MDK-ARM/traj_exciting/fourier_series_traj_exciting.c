@@ -4,8 +4,10 @@
 #include "lkmoto.h"
 #include "ids830can.h"
 #include "fourier_series_traj_exciting.h"
+#include "tim.h"
 
-
+//电机控制时间点
+uint8_t motor_control_k = 0;
 //motor control interval time
 float control_interval_time = 0.05;
 // sampling period
@@ -21,8 +23,8 @@ uint8_t traj_order = 5;
 // number of revolute joints
 uint8_t dof = 6;
 // 6个关节角度信息
-float q[6] = {0};
-float q_last[6] = {0};
+float q[7] = {0};
+float q_last[7] = {0};
 // fourier series params
 float traj_param[] = {0,
 -0.0017057,
@@ -100,11 +102,11 @@ void fourier_series_traj(uint8_t time)
 
 	traj_wf = traj_f * 2.0 * pi;
 	
-	for(int i=1; i<(dof+1); i++)
+	for(int i=1; i<=dof; i++)
 	{
 		m = (order_prod_2 + 1) * (i - 1); 
 		q[i] = traj_param[m + order_prod_2 + 1];//q0
-		for(int j=1; j<(traj_order+1); j++)
+		for(int j=1; j<=traj_order; j++)
 		{
 			// alpha(a)=traj_param(m+2*(j-1)+1), beta(b)=traj_param(m+2*(j-1)+2)
 			q[i] = q[i] + ((traj_param[m + 2*(j-1) + 1] / (traj_wf * j)) * sin(traj_wf * j * time) - (traj_param[m + 2*(j-1) + 2] / (traj_wf * j)) * cos(traj_wf * j * time));
@@ -112,32 +114,34 @@ void fourier_series_traj(uint8_t time)
 	}
 }
 
+void traj_exciting_init(void)
+{
+	traj_n = 1.0 / control_interval_time / traj_f;
+}
+
 void run_fourier_series_traj(void)
 {
 	float motor_speed = 0;
-	
-	traj_n = 1.0 / traj_Ts / traj_f;
-	
-	for(int k=1; k<=traj_n; k++)
+
+	fourier_series_traj(motor_control_k*control_interval_time);//电机控制信号点
+//		printf("fourier_series_traj %d compute successfully\r\n", k);
+	for(int i=1; i<=6; i++)
 	{
-		fourier_series_traj(k*control_interval_time);//电机控制信号点
-		for(int i=1; i<6; i++)
+		if(i == 1)
 		{
-			if(i == 1)
-			{
-				motor_speed = fabs((q[i]-q_last[i])/control_interval_time);//fabs:float类型的绝对值函数
-				LinearActuator_startRun_maxspeed_position(i, motor_speed, q[i]);
-				q_last[i] = q[i];
-			}
-			else
-			{
-				q[i] = q[i]/pi*180;
-				motor_speed = fabs((q[i]-q_last[i])/control_interval_time);//fabs:float类型的绝对值函数
-				angle_close_loop_with_speed(i, q[i], motor_speed);
-				q_last[i] = q[i];
-			}
+			motor_speed = fabs((q[i]-q_last[i])/control_interval_time)+1;//fabs:float类型的绝对值函数
+			LinearActuator_startRun_maxspeed_position(i, motor_speed, q[i]);
+			q_last[i] = q[i];
+		}
+		else
+		{
+			q[i] = q[i]/pi*180;
+			motor_speed = fabs((q[i]-q_last[i])/control_interval_time)+1;//fabs:float类型的绝对值函数
+			angle_close_loop_with_speed(i, q[i], motor_speed);
+			q_last[i] = q[i];
 		}
 	}
+	motor_control_k++;
 }
 
 

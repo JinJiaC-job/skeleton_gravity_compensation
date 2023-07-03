@@ -8,6 +8,7 @@
 "lkmotors_can\gpio.o"
 "lkmotors_can\adc.o"
 "lkmotors_can\can.o"
+"lkmotors_can\tim.o"
 "lkmotors_can\usart.o"
 "lkmotors_can\stm32f1xx_it.o"
 "lkmotors_can\stm32f1xx_hal_msp.o"

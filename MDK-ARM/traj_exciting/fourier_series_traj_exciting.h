@@ -5,6 +5,8 @@
 
 // PARAMETERS
 #define pi 3.1415
+//电机控制时间点
+extern float control_interval_time;
 // sampling period
 extern float traj_Ts;
 // trajectory fundamental frequency = 1/T; T = run time of skeleton = 20s.
@@ -18,10 +20,11 @@ extern uint8_t traj_orde;
 // number of revolute joints
 extern uint8_t dof;
 // 6个关节角度信息
-extern float q[6];
-extern float q_last[6];
+extern float q[7];
+extern float q_last[7];
 
 void fourier_series_traj(uint8_t time);
+void traj_exciting_init(void);
 void run_fourier_series_traj(void);
 
 
