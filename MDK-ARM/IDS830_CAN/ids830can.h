@@ -101,7 +101,7 @@ void LinearActuator_speedmode_runtime(uint8_t id, uint16_t runtime);
 00    1A    50    00   00    05    00   00
 00    1B    50    00   00    05    00   00
 发送目标位置，地址 1 位置高 16 位，地址 2 位置低 16 位。接收正确原数据返回*/
-void LinearActuator_startRun_maxspeed_position(uint8_t id, int16_t maxspeed, float position);
+void LinearActuator_startRun_maxspeed_position(uint8_t id, float position, float maxspeed);
 
 /*
 电缸读取位置反馈信息

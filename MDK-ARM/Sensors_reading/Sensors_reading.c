@@ -5,7 +5,7 @@
 float ADC_Pressure_Value;
 
 
-float pressure_SensorReading(void)
+void pressure_SensorReading(void)
 {
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,10);
@@ -15,9 +15,10 @@ float pressure_SensorReading(void)
 		ADC_Pressure_Value = HAL_ADC_GetValue(&hadc1);
 	}
 	ADC_Pressure_Value = HAL_ADC_GetValue(&hadc1);
+	printf(" LinearActuator_Pressure = %.3fV \r\n", ADC_Pressure_Value*3.3/4096);
 //	printf(" ADC channel_0 value = %.3fV \r\n", ADC_Pressure_Value*3.3/4096);
-	ADC_Pressure_Value = ADC_Pressure_Value*3.3/4096;
-	return ADC_Pressure_Value;
+//	ADC_Pressure_Value = ADC_Pressure_Value*3.3/4096;
+	
 }
 
 

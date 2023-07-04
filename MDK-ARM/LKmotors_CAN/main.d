@@ -34,4 +34,5 @@ lkmotors_can/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Core\Inc\adc.h ..\Core\Inc\can.h ..\Core\Inc\tim.h \
   ..\Core\Inc\usart.h ..\Core\Inc\gpio.h ..\Core\Inc\lkmoto.h \
   G:\APPs\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  IDS830_CAN\ids830can.h traj_exciting\fourier_series_traj_exciting.h
+  IDS830_CAN\ids830can.h Sensors_reading\Sensors_reading.h \
+  traj_exciting\fourier_series_traj_exciting.h

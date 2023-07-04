@@ -11,7 +11,7 @@ extern float ADC_Pressure_Value;
 
 
 //拉压力传感器数据读取
-float pressure_SensorReading(void);
+void pressure_SensorReading(void);
 
 
 

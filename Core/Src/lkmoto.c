@@ -4,6 +4,13 @@
 #include "stm32f1xx_hal_can.h"
 #include "can.h"
 #include "stdio.h"
+#include "ids830can.h"
+
+void ms_Delay(uint16_t t_ms)
+{
+	uint32_t t=t_ms*3127;
+	while(t--);
+}
 
 // data 长度 DLC
 #define LEN 8 
@@ -11,7 +18,7 @@
 //控制命令间隔
 #define command_interval_time 3
 
-uint8_t CAN_motor_data[8];//电机接收数据
+int8_t CAN_motor_data[8];//电机接收数据
 uint32_t circleAngle;//电机角度值
 
 //can 总线 send 函数 移植仅需修改此函数
@@ -319,7 +326,23 @@ void write_current_position_to_rom(uint8_t id){
 
 void read_angle(uint8_t id){
     uint8_t buf[LEN] = {0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+		int64_t motorAngle;
     can_send(buf, id);
+		HAL_Delay(1);
+		for(int i=0; i<7; i++)
+		{
+			*((uint8_t *)(& motorAngle)+i) = CAN_motor_data[i+1];
+		}
+		switch(id)
+		{
+			case 6: motorAngle = motorAngle/1000; break;
+			case 5: motorAngle = motorAngle/800; break;
+			case 4: motorAngle = motorAngle/3600; break;
+			case 3: motorAngle = motorAngle/800; break;
+			case 2: motorAngle = motorAngle/3600; break;
+			default:printf("id error\n"); break;
+    }
+		printf("motor_angle: %.3lld du\r\n", motorAngle);
     HAL_Delay(command_interval_time);
 }
 
@@ -480,9 +503,20 @@ void clear_error(uint8_t id){
 
 
 void read_status2(uint8_t id){
-    uint8_t buf[LEN] = {0x9C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    can_send(buf, id);
-		HAL_Delay(command_interval_time);
+	float motor_current, motor_speed;
+	uint8_t buf[LEN] = {0x9C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+	can_send(buf, id);
+	HAL_Delay(1);
+	*(uint8_t *)(&motor_current) = CAN_motor_data[2];
+	*((uint8_t *)(&motor_current)+1) = CAN_motor_data[3];
+	motor_current = motor_current/2048*33;
+	printf("motor_current: %.3f A\r\n", motor_current);
+	
+	*(uint8_t *)(&motor_speed) = CAN_motor_data[4];
+	*((uint8_t *)(&motor_speed)+1) = CAN_motor_data[5];
+	printf("motor_speed: %.3f dps\r\n", motor_speed);
+	
+	HAL_Delay(command_interval_time);
 }
 
 
@@ -800,11 +834,11 @@ void angle_close_loop_with_speed(uint8_t id, float angleControl, uint16_t maxSpe
     uint8_t buf[LEN] = {0xA4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 		switch(id)
 		{
-			case 1: angleControl = angleControl*1000; break;
-			case 2: angleControl = angleControl*800; break;
-			case 3: angleControl = angleControl*3600; break;
-			case 4: angleControl = angleControl*800; break;
-			case 5: angleControl = angleControl*3600; break;
+			case 6: angleControl = angleControl*1000; maxSpeed = maxSpeed*1000; break;
+			case 5: angleControl = angleControl*800; maxSpeed = maxSpeed*800; break;
+			case 4: angleControl = angleControl*3600; maxSpeed = maxSpeed*3600; break;
+			case 3: angleControl = angleControl*800; maxSpeed = maxSpeed*800; break;
+			case 2: angleControl = angleControl*3600; maxSpeed = maxSpeed*3600; break;
 			default:printf("id error\n"); break;
     }
     buf[2] = *(uint8_t *)(& maxSpeed);
@@ -814,7 +848,7 @@ void angle_close_loop_with_speed(uint8_t id, float angleControl, uint16_t maxSpe
     buf[6] = *((uint8_t *)(& angleControl)+2);
     buf[7] = *((uint8_t *)(& angleControl)+3);
     can_send(buf, id);
-    HAL_Delay(command_interval_time);
+    ms_Delay(command_interval_time);
 }
 
 //(24)
@@ -1014,21 +1048,35 @@ void angle_close_loop_with_direction_and_angle_and_max_speed(uint8_t id, int32_t
 //机械臂零点位置
 void ske_base_position(void)
 {
-    // angle_close_loop_with_speed(1, 0, 2000);
-    // angle_close_loop_with_speed(2, 0, 2000);
-    // angle_close_loop_with_speed(4, 0, 2000);
-    // read_angle_single(3);
-    // angle_close_loop_with_direction_and_angle_and_max_speed(3, -circleAngle, 3000);
-    // read_angle_single(5);
-    // angle_close_loop_with_direction_and_angle_and_max_speed(5, -circleAngle, 3000);
-	for(int i=1;i<6;i++)
-	{
-		// read_angle_single(i);
-		// angle_close_loop_with_direction_and_angle_and_max_speed(i, -circleAngle, 500);
-        // HAL_Delay(5000);
-        angle_close_loop_with_speed(i, 0, 2000);
-	}
 	
+////写入当前位置到ROM作为零点(多次写入会影响芯片寿命，不建议频繁使用)
+// 	HAL_Delay(1000);
+// 	for(int i=1;i<=6;i++)
+// 	{
+// 		write_current_position_to_rom(i);
+// 		HAL_Delay(1000);
+// 	}
+	
+////读取编码器位置，并将编码器零偏值写入ROM作为电机零点
+//	for(int i=2;i<=6;i++)
+//	{
+//		read_encoder(i);
+//		uint16_t encoderOffset = 0;
+//		*(uint8_t *)(&encoderOffset) = CAN_motor_data[6];
+//		*((uint8_t *)(&encoderOffset)+1) = CAN_motor_data[7];
+//		write_encoder_offset(i, encoderOffset);
+//	}
+//	printf("\nset motors zero point Success!!\r\n");
+	
+	//所有电机及电缸回到零点位置
+	for(int i=1; i<=6; i++)
+	{
+		if(i == 1)
+			LinearActuator_startRun_maxspeed_position(i, 0, 60);
+		
+		else
+			angle_close_loop_with_speed(i, 0, 1000);
+	}
 }
 
 //读取五个关节扭矩电流
@@ -1041,113 +1089,4 @@ void read_5torque_current(void)
 	}
 	printf("\nGet Agroup of turque current Message Success!!");
 }
-
-
-void Ske_pose_1(void)
-{
-	angle_close_loop_with_direction_and_angle_and_max_speed(1, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(2, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(5, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(4, -72000, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(3, -324000, 500);
-	HAL_Delay(1500);
-
-	for(int j=0;j<2;j++)
-	{
-		read_5torque_current();
-	}
-
-  printf("\nGet turque current of Group1 Message Success!!");
-
-}
-
-void Ske_pose_2(void)
-{
-	angle_close_loop_with_direction_and_angle_and_max_speed(5, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(1, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(2, -72000, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(4, -72000, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(3, -324000, 500);
-	HAL_Delay(1500);
-
-	for(int j=0;j<2;j++)
-	{
-		read_5torque_current();
-	}
-  printf("\nGet turque current of Group2 Message Success!!");
-
-}
-
-void Ske_pose_3(void)
-{
-	angle_close_loop_with_direction_and_angle_and_max_speed(1, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(2, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(5, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(3, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(4, -72000, 500);
-	HAL_Delay(3000);
-
-	
-//	for(int i=0;i<6;i++)
-//	{
-//		read_5torque_current();
-//	}
-//  printf("\nGet turque current of Group3 Message Success!!");
-
-}
-
-void Ske_pose_4(void)
-{
-	angle_close_loop_with_direction_and_angle_and_max_speed(2, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(5, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(1, 90000, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(4, -72000, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(3, -324000, 500);
-	HAL_Delay(1500);
-
-	for(int j=0;j<2;j++)
-	{
-		read_5torque_current();
-	}
-  printf("\nGet turque current of Group4 Message Success!!");
-
-}
-
-void Ske_pose_5(void)
-{
-	angle_close_loop_with_direction_and_angle_and_max_speed(1, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(2, 0, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(5, -324000, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(4, -72000, 500);
-	HAL_Delay(1500);
-	angle_close_loop_with_direction_and_angle_and_max_speed(3, -324000, 500);
-	HAL_Delay(1500);
-
-	for(int j=0;j<2;j++)
-	{
-		read_5torque_current();
-	}
-  printf("\nGet turque current of Group5 Message Success!!");
-
-}
-
 

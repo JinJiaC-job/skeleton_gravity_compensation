@@ -129,6 +129,7 @@ void run_fourier_series_traj(void)
 	{
 		if(i == 1)
 		{
+			q[i] = q[i]*1000;
 			motor_speed = fabs((q[i]-q_last[i])/control_interval_time)+1;//fabs:float类型的绝对值函数
 			LinearActuator_startRun_maxspeed_position(i, motor_speed, q[i]);
 			q_last[i] = q[i];

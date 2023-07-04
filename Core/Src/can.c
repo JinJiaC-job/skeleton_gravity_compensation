@@ -96,7 +96,7 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     /* CAN1 interrupt Init */
-    HAL_NVIC_SetPriority(USB_LP_CAN1_RX0_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(USB_LP_CAN1_RX0_IRQn, 2, 0);
     HAL_NVIC_EnableIRQ(USB_LP_CAN1_RX0_IRQn);
   /* USER CODE BEGIN CAN1_MspInit 1 */
 
@@ -170,10 +170,10 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
   uint8_t aRxData[8]={0};
   if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &hCAN1_RxHeader, aRxData) == HAL_OK)
     {
-      printf("\nGet Rx Message Success!!\nData:");
+//      printf("\nGet Rx Message Success!!\nData:");
       for(int i=0; i<8; i++)
 			{
-        printf("%x,", aRxData[i]);
+//        printf("%x,", aRxData[i]);
 			  CAN_motor_data[i] = aRxData[i];
 			}
     }

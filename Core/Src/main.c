@@ -32,6 +32,7 @@
 #include "gpio.h"
 #include "stdio.h"
 #include "ids830can.h"
+#include "Sensors_reading.h"
 #include "fourier_series_traj_exciting.h"
 
 /* USER CODE END Includes */
@@ -101,49 +102,30 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 	CAN_Filter_Init();
-	HAL_TIM_Base_Start_IT(&htim2);
+	traj_exciting_init();
 	
  //运行电机motor1~motor5
- 	for(int i=1;i<6;i++)
+ 	for(int i=2;i<=6;i++)
  	{
  		motor_run(i);
  	}
-
- //写入当前位置到ROM作为零点(多次写入会影响芯片寿命，不建议频繁使用)
-// 	HAL_Delay(1000);
-// 	for(int i=1;i<6;i++)
-// 	{
-// 		write_current_position_to_rom(i);
-// 		HAL_Delay(1000);
-// 	}
+	ske_base_position();
+	HAL_Delay(5000);
 	
-////读取编码器位置，并将编码器零偏值写入ROM作为电机零点
-//	for(int i=2;i<6;i++)
-//	{
-//		read_encoder(i);
-//		uint16_t encoderOffset = 0;
-//		*(uint8_t *)(&encoderOffset) = CAN_motor_data[6];
-//		*((uint8_t *)(&encoderOffset)+1) = CAN_motor_data[7];
-//		write_encoder_offset(i, encoderOffset);
-//	}
-//	printf("\nset zero point Success!!\r\n");
-//	//读取单圈角度
-//	for(int i=2;i<6;i++)
-//	{
-//		read_angle_single(i);
-//		printf("\nGet %d singleAngle Success!!\r\n", i);
-//		HAL_Delay(1000);
-//	}
-//	printf("\nGet singleAngle Success!!\r\n");
-//	//读取多圈角度
-//	for(int i=2;i<6;i++)
-//	{
-//		read_angle(i);
-//		printf("\nGet %d multiangle Success!!\r\n", i);
-//	}
-//	printf("\nGet multiangle Success!!\r\n");
-
-//	printf("\nStart linear actuator!!\n");
+	for(int i=1; i<=6; i++)
+	{
+		if(i == 1)
+		{
+			LinearActuator_read_position(i);
+			LinearActuator_read_CurrentandSpeed(i);
+			pressure_SensorReading();
+		}
+		else
+			read_status2(i);
+			read_angle(i);
+	}
+	
+	HAL_TIM_Base_Start_IT(&htim2);
 
   /* USER CODE END 2 */
 
@@ -157,57 +139,16 @@ int main(void)
 			{
 				LinearActuator_read_position(i);
 				LinearActuator_read_CurrentandSpeed(i);
+				pressure_SensorReading();
 			}
 			else
 				read_status2(i);
+			  read_angle(i);
 		}
-//		angle_close_loop_with_speed(2, 0, 500);
-//		angle_close_loop_with_speed(3, 0, 1000);
-//		angle_close_loop_with_speed(4, 0, 500);
-//		angle_close_loop_with_speed(5, 0, 1000);
-//		HAL_Delay(10000);
-////		angle_close_loop_with_speed(1, 90, 900);
-//		angle_close_loop_with_speed(2, 90, 500);
-//		angle_close_loop_with_speed(3, 90, 1000);
-//		angle_close_loop_with_speed(4, 90, 500);
-//		angle_close_loop_with_speed(5, 90, 1000);
-//		HAL_Delay(10000);
-////		angle_close_loop_with_speed(1, 0, 900);
-//		angle_close_loop_with_speed(2, 0, 500);
-//		angle_close_loop_with_speed(3, 0, 1000);
-//		angle_close_loop_with_speed(4, 0, 500);
-//		angle_close_loop_with_speed(5, 0, 1000);
-//		HAL_Delay(10000);
-////		angle_close_loop_with_speed(1, -90, 900);
-//		angle_close_loop_with_speed(2, -90, 500);
-//		angle_close_loop_with_speed(3, -90, 1000);
-//		angle_close_loop_with_speed(4, -90, 500);
-//		angle_close_loop_with_speed(5, -90, 1000);
-//		HAL_Delay(10000);
-////		angle_close_loop_with_speed(1, 0, 900);
-//		angle_close_loop_with_speed(2, 0, 500);
-//		angle_close_loop_with_speed(3, 0, 1000);
-//		angle_close_loop_with_speed(4, 0, 500);
-//		angle_close_loop_with_speed(5, 0, 1000);
-//		HAL_Delay(10000);
-
-//    printf("\n linear actuator run start!!\n");
-//    LinearActuator_startRun_maxspeed_position(6, 3000, 200000);
-//    uint8_t buf[LEN] = {0x00, 0x1A, 0xE8, 0x00, 0x00, 0xE9, 0x00, 0x00};
-//		IDS830_can_send(buf,6);
-//    HAL_Delay(5000);
-//    LinearActuator_startRun_maxspeed_position(6, 3000, 0);
-//		HAL_Delay(5000);
-//    readData_pointTopoint(6, 0, 0xE8, 0x00, 0xE9, 0x00  );
-//    
-//    printf("\n linear actuator run done!!\n");
-//		HAL_Delay(10000);
-
 
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
 
   }
   /* USER CODE END 3 */

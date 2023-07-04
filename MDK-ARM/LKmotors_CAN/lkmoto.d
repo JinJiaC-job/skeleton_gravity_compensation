@@ -32,4 +32,5 @@ lkmotors_can/lkmoto.o: ..\Core\Src\lkmoto.c ..\Core\Inc\lkmoto.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
   ..\Core\Inc\can.h ..\Core\Inc\main.h \
-  G:\APPs\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h
+  G:\APPs\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
+  IDS830_CAN\ids830can.h

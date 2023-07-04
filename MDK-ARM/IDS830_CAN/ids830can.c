@@ -27,7 +27,7 @@ void writeData_pointTopoint(uint8_t id, uint8_t group_id, uint8_t reg1, uint16_t
 	buf[7] = *((uint8_t *)(& data2));
 	buf[6] = *((uint8_t *)(& data2)+1);
 	IDS830_can_send(buf, id);
-	HAL_Delay(Linear_cmd_interval_time);
+	ms_Delay(Linear_cmd_interval_time);
 }
 
 void readData_pointTopoint(uint8_t id, uint8_t group_id, uint8_t reg1, uint16_t data1, uint8_t reg2, uint16_t data2 )
@@ -38,7 +38,7 @@ void readData_pointTopoint(uint8_t id, uint8_t group_id, uint8_t reg1, uint16_t 
 	buf[7] = *((uint8_t *)(& data2));
 	buf[6] = *((uint8_t *)(& data2)+1);
 	IDS830_can_send(buf, id);
-	HAL_Delay(Linear_cmd_interval_time);
+	ms_Delay(Linear_cmd_interval_time);
 }
 
 void writeData_oneTomany(uint8_t id, uint8_t group_id, uint8_t reg1, uint16_t data1, uint8_t reg2, uint16_t data2 )
@@ -49,7 +49,7 @@ void writeData_oneTomany(uint8_t id, uint8_t group_id, uint8_t reg1, uint16_t da
 	buf[7] = *((uint8_t *)(& data2));
 	buf[6] = *((uint8_t *)(& data2)+1);	
 	IDS830_can_send(buf, id);
-	HAL_Delay(Linear_cmd_interval_time);
+	ms_Delay(Linear_cmd_interval_time);
 }
 
 void writeData_oneTomany_CorrNoRes(uint8_t id, uint8_t group_id, uint8_t reg1, uint16_t data1, uint8_t reg2, uint16_t data2 )
@@ -60,7 +60,7 @@ void writeData_oneTomany_CorrNoRes(uint8_t id, uint8_t group_id, uint8_t reg1, u
 	buf[7] = *((uint8_t *)(& data2));
 	buf[6] = *((uint8_t *)(& data2)+1);		
 	IDS830_can_send(buf, id);
-	HAL_Delay(Linear_cmd_interval_time);
+	ms_Delay(Linear_cmd_interval_time);
 }
 
 void LinearActuator_startRun_targetSpeed(uint8_t id, uint16_t targetSpeed)
@@ -74,9 +74,10 @@ void LinearActuator_speedmode_runtime(uint8_t id, uint16_t runtime)
 	writeData_pointTopoint(id, 0x00, 0x02, 0x00c4, 0x0a, runtime);
 }
 
-void LinearActuator_startRun_maxspeed_position(uint8_t id, int16_t maxspeed, float position)
+void LinearActuator_startRun_maxspeed_position(uint8_t id, float position, float maxspeed)
 {
 	position = position * 2500;
+	maxspeed = maxspeed/3000*8192;
 	writeData_pointTopoint(id, 0x00, 0x00, 0x0001, 0x1d, maxspeed);
 	writeData_pointTopoint(id, 0x00, 0x50, *((int16_t *)(& position)+1), 0x05, *(int16_t *)(& position));
 }
@@ -102,9 +103,13 @@ void LinearActuator_read_CurrentandSpeed(uint8_t id)
 	readData_pointTopoint(id, 0x00, 0xe2, 0x0000, 0xe4, 0x0000);
 	*(uint8_t *)(&LinAcr_current) = CAN_motor_data[4];
 	*((uint8_t *)(&LinAcr_current)+1) = CAN_motor_data[3];
+	LinAcr_current = LinAcr_current/100;
+	printf("LinearActuator_current: %.3f mm\r\n", LinAcr_current);
 	
 	*(uint8_t *)(&LinAcr_speed) = CAN_motor_data[7];
 	*((uint8_t *)(&LinAcr_speed)+1) = CAN_motor_data[6];
+	LinAcr_speed = LinAcr_speed/8192*3000;
+	printf("LinearActuator_speed: %.3f mm\r\n", LinAcr_speed);
 }
 
 

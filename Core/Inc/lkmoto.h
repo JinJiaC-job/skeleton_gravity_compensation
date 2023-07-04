@@ -19,7 +19,7 @@
 // data 长度 DLC
 #define LEN 8
 
-extern uint8_t CAN_motor_data[8];//电机接收数据
+extern int8_t CAN_motor_data[8];//电机接收数据
 extern uint32_t circleAngle;//电机角度值
 
 //can 总线 send 函数 移植仅需修改此函数
@@ -28,6 +28,7 @@ extern uint32_t circleAngle;//电机角度值
 
 void can_send(uint8_t *buf,uint8_t id);
 void can_msg_process(uint8_t id,uint8_t *buf);
+void ms_Delay(uint16_t t_ms);
 
 
 //motor1:角度需要乘上减速比：360°=36000*10=360000
