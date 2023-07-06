@@ -6,6 +6,8 @@
 // PARAMETERS
 #define pi 3.1415
 //电机控制时间点
+extern unsigned int motor_control_k;
+//motor control interval time
 extern float control_interval_time;
 // sampling period
 extern float traj_Ts;
@@ -23,7 +25,7 @@ extern uint8_t dof;
 extern float q[7];
 extern float q_last[7];
 
-void fourier_series_traj(uint8_t time);
+void fourier_series_traj(float time);
 void traj_exciting_init(void);
 void run_fourier_series_traj(void);
 

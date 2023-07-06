@@ -104,28 +104,46 @@ int main(void)
 	CAN_Filter_Init();
 	traj_exciting_init();
 	
- //运行电机motor1~motor5
- 	for(int i=2;i<=6;i++)
- 	{
- 		motor_run(i);
- 	}
-	ske_base_position();
+// //运行电机motor1~motor5
+// 	for(int i=2;i<=6;i++)
+// 	{
+// 		motor_run(i);
+// 	}
+//	//读取编码器位置，并将编码器零偏值写入ROM作为电机零点(需删除)
+//	for(int i=2;i<=6;i++)
+//	{
+//		read_encoder(i);
+//		uint16_t encoderOffset = 0;
+//		*(uint8_t *)(&encoderOffset) = CAN_motor_data[6];
+//		*((uint8_t *)(&encoderOffset)+1) = CAN_motor_data[7];
+//		write_encoder_offset(i, encoderOffset);
+//	}
+//	printf("\nset motors zero point Success!!\r\n");
+//	ske_base_position();
+	//需删除
+	LinearActuator_startRun_maxspeed_position(1, 20, 100);
+	HAL_Delay(500);
+	LinearActuator_read_position(1);
+	LinearActuator_read_CurrentandSpeed(1);
+	HAL_Delay(2500);
+	LinearActuator_startRun_maxspeed_position(1, 0, 100);
+	
 	HAL_Delay(5000);
 	
-	for(int i=1; i<=6; i++)
-	{
-		if(i == 1)
-		{
-			LinearActuator_read_position(i);
-			LinearActuator_read_CurrentandSpeed(i);
-			pressure_SensorReading();
-		}
-		else
-			read_status2(i);
-			read_angle(i);
-	}
+//	for(int i=1; i<=6; i++)
+//	{
+//		if(i == 1)
+//		{
+//			LinearActuator_read_position(i);
+//			LinearActuator_read_CurrentandSpeed(i);
+//			pressure_SensorReading();
+//		}
+//		else
+//			read_status2(i);
+//			read_angle(i);
+//	}
 	
-	HAL_TIM_Base_Start_IT(&htim2);
+//	HAL_TIM_Base_Start_IT(&htim2);
 
   /* USER CODE END 2 */
 
@@ -133,24 +151,28 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		for(int i=1; i<=6; i++)
-		{
-			if(i == 1)
-			{
-				LinearActuator_read_position(i);
-				LinearActuator_read_CurrentandSpeed(i);
-				pressure_SensorReading();
-			}
-			else
-				read_status2(i);
-			  read_angle(i);
-		}
+//		for(int i=1; i<=6; i++)
+//		{
+//			if(i == 1)
+//			{
+//				LinearActuator_read_position(i);
+//				LinearActuator_read_CurrentandSpeed(i);
+//				pressure_SensorReading();
+//			}
+//			else
+//				read_status2(i);
+//			  read_angle(i);
+//		}
+//		if(motor_control_k >= 2000)
+//			break;
+		
 
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
   }
+	printf("exciting traj experiment end!!!\n");
   /* USER CODE END 3 */
 }
 

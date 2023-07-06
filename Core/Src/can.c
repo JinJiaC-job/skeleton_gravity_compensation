@@ -176,6 +176,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 //        printf("%x,", aRxData[i]);
 			  CAN_motor_data[i] = aRxData[i];
 			}
+//			printf("\n");
     }
 	// HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &hCAN1_RxHeader, aRxData);
 //  for(int i=0;i<8;i++)

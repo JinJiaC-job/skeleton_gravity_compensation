@@ -8,7 +8,7 @@
 //电缸输入信号int32_t position：50000<-->20mm; 1mm<-->2500
 
 //控制命令间隔
-#define command_interval_time 3
+#define Linear_cmd_interval_time 2
 
 void IDS830_can_send(uint8_t *buf,uint8_t id);
 

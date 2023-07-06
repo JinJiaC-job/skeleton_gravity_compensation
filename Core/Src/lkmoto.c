@@ -12,12 +12,6 @@ void ms_Delay(uint16_t t_ms)
 	while(t--);
 }
 
-// data 长度 DLC
-#define LEN 8 
-
-//控制命令间隔
-#define command_interval_time 3
-
 int8_t CAN_motor_data[8];//电机接收数据
 uint32_t circleAngle;//电机角度值
 
@@ -342,7 +336,7 @@ void read_angle(uint8_t id){
 			case 2: motorAngle = motorAngle/3600; break;
 			default:printf("id error\n"); break;
     }
-		printf("motor_angle: %.3lld du\r\n", motorAngle);
+		printf("motor_angle%d: %.3lld du\r\n", id, motorAngle);
     HAL_Delay(command_interval_time);
 }
 
@@ -506,15 +500,15 @@ void read_status2(uint8_t id){
 	float motor_current, motor_speed;
 	uint8_t buf[LEN] = {0x9C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 	can_send(buf, id);
-	HAL_Delay(1);
+	HAL_Delay(2);
 	*(uint8_t *)(&motor_current) = CAN_motor_data[2];
 	*((uint8_t *)(&motor_current)+1) = CAN_motor_data[3];
 	motor_current = motor_current/2048*33;
-	printf("motor_current: %.3f A\r\n", motor_current);
+	printf("motor_current%d: %.3f A\r\n", id, motor_current);
 	
 	*(uint8_t *)(&motor_speed) = CAN_motor_data[4];
 	*((uint8_t *)(&motor_speed)+1) = CAN_motor_data[5];
-	printf("motor_speed: %.3f dps\r\n", motor_speed);
+	printf("motor_speed%d: %.3f dps\r\n", id, motor_speed);
 	
 	HAL_Delay(command_interval_time);
 }
@@ -1057,26 +1051,32 @@ void ske_base_position(void)
 // 		HAL_Delay(1000);
 // 	}
 	
-////读取编码器位置，并将编码器零偏值写入ROM作为电机零点
-//	for(int i=2;i<=6;i++)
-//	{
-//		read_encoder(i);
-//		uint16_t encoderOffset = 0;
-//		*(uint8_t *)(&encoderOffset) = CAN_motor_data[6];
-//		*((uint8_t *)(&encoderOffset)+1) = CAN_motor_data[7];
-//		write_encoder_offset(i, encoderOffset);
-//	}
-//	printf("\nset motors zero point Success!!\r\n");
+//读取编码器位置，并将编码器零偏值写入ROM作为电机零点
+	for(int i=2;i<=6;i++)
+	{
+		read_encoder(i);
+		uint16_t encoderOffset = 0;
+		*(uint8_t *)(&encoderOffset) = CAN_motor_data[6];
+		*((uint8_t *)(&encoderOffset)+1) = CAN_motor_data[7];
+		write_encoder_offset(i, encoderOffset);
+	}
+	printf("\nset motors zero point Success!!\r\n");
 	
-	//所有电机及电缸回到零点位置
+	//所有电机及电缸回到初始位置
 	for(int i=1; i<=6; i++)
 	{
 		if(i == 1)
-			LinearActuator_startRun_maxspeed_position(i, 0, 60);
+			LinearActuator_startRun_maxspeed_position(i, 0, 120);
+		
+		else if(i == 4)
+			angle_close_loop_with_speed(i, -90, 1000);
+		else if(i == 5)
+			angle_close_loop_with_speed(i, 90, 1000);
 		
 		else
 			angle_close_loop_with_speed(i, 0, 1000);
 	}
+	HAL_Delay(10000);
 }
 
 //读取五个关节扭矩电流

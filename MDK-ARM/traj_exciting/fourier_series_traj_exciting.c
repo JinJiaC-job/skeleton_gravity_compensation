@@ -6,10 +6,10 @@
 #include "fourier_series_traj_exciting.h"
 #include "tim.h"
 
-//电机控制时间点
-uint8_t motor_control_k = 0;
-//motor control interval time
-float control_interval_time = 0.05;
+//电机控制时间点：
+unsigned int motor_control_k = 0;
+//motor control interval time：每过motor control interval time秒输出一次控制命令
+float control_interval_time = 0.01;
 // sampling period
 float traj_Ts = 0.1;
 // trajectory fundamental frequency = 1/T; T = run time of skeleton = 20s.
@@ -24,7 +24,7 @@ uint8_t traj_order = 5;
 uint8_t dof = 6;
 // 6个关节角度信息
 float q[7] = {0};
-float q_last[7] = {0};
+float q_last[7] = {0, 0, 0, 0, -90, 90, 0};
 // fourier series params
 float traj_param[] = {0,
 -0.0017057,
@@ -95,7 +95,7 @@ float traj_param[] = {0,
 -0.11444};
 
 
-void fourier_series_traj(uint8_t time)
+void fourier_series_traj(float time)
 {
 	uint8_t order_prod_2, m;
   order_prod_2 = traj_order * 2;
@@ -124,14 +124,13 @@ void run_fourier_series_traj(void)
 	float motor_speed = 0;
 
 	fourier_series_traj(motor_control_k*control_interval_time);//电机控制信号点
-//		printf("fourier_series_traj %d compute successfully\r\n", k);
 	for(int i=1; i<=6; i++)
 	{
 		if(i == 1)
 		{
 			q[i] = q[i]*1000;
 			motor_speed = fabs((q[i]-q_last[i])/control_interval_time)+1;//fabs:float类型的绝对值函数
-			LinearActuator_startRun_maxspeed_position(i, motor_speed, q[i]);
+			LinearActuator_startRun_maxspeed_position(i, q[i], motor_speed);
 			q_last[i] = q[i];
 		}
 		else
@@ -142,7 +141,8 @@ void run_fourier_series_traj(void)
 			q_last[i] = q[i];
 		}
 	}
-	motor_control_k++;
+	if(++motor_control_k == 2000)
+		HAL_TIM_Base_Stop_IT(&htim2);
 }
 
 
