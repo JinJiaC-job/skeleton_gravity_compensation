@@ -10,6 +10,9 @@
 //控制命令间隔
 #define Linear_cmd_interval_time 2
 
+extern uint8_t ids830_position[8];//电缸接收数据
+extern uint8_t ids830_currentAndspeed[8];//电缸接收数据
+
 void IDS830_can_send(uint8_t *buf,uint8_t id);
 
 /*点对点的写数据操作，掉电不保存。主机发送数据指令，接收正确后，从机返回相应

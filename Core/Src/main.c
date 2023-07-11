@@ -65,7 +65,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t TxData[8];
+
 /* USER CODE END 0 */
 
 /**
@@ -120,16 +120,7 @@ int main(void)
 //	}
 //	printf("\nset motors zero point Success!!\r\n");
 //	ske_base_position();
-	//ÐèÉ¾³ý
-	LinearActuator_startRun_maxspeed_position(1, 20, 100);
-	HAL_Delay(500);
-	LinearActuator_read_position(1);
-	LinearActuator_read_CurrentandSpeed(1);
-	HAL_Delay(2500);
-	LinearActuator_startRun_maxspeed_position(1, 0, 100);
-	
-	HAL_Delay(5000);
-	
+
 //	for(int i=1; i<=6; i++)
 //	{
 //		if(i == 1)
@@ -151,6 +142,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+//		LinearActuator_read_position(1);
+//		LinearActuator_read_CurrentandSpeed(1);
 //		for(int i=1; i<=6; i++)
 //		{
 //			if(i == 1)

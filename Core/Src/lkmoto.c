@@ -12,7 +12,7 @@ void ms_Delay(uint16_t t_ms)
 	while(t--);
 }
 
-int8_t CAN_motor_data[8];//电机接收数据
+uint8_t CAN_motor_data[8] = {0};//电机接收数据
 uint32_t circleAngle;//电机角度值
 
 //can 总线 send 函数 移植仅需修改此函数
@@ -826,21 +826,22 @@ void angle_close_loop(uint8_t id, int32_t angleControl){
 
 void angle_close_loop_with_speed(uint8_t id, float angleControl, uint16_t maxSpeed){
     uint8_t buf[LEN] = {0xA4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+		int32_t angleControl_int32;
 		switch(id)
 		{
-			case 6: angleControl = angleControl*1000; maxSpeed = maxSpeed*1000; break;
-			case 5: angleControl = angleControl*800; maxSpeed = maxSpeed*800; break;
-			case 4: angleControl = angleControl*3600; maxSpeed = maxSpeed*3600; break;
-			case 3: angleControl = angleControl*800; maxSpeed = maxSpeed*800; break;
-			case 2: angleControl = angleControl*3600; maxSpeed = maxSpeed*3600; break;
+			case 6: angleControl_int32 = (int32_t)(angleControl*1000.0); maxSpeed = maxSpeed*1000; break;
+			case 5: angleControl_int32 = (int32_t)(angleControl*800.0); maxSpeed = maxSpeed*800; break;
+			case 4: angleControl_int32 = (int32_t)(angleControl*3600.0); maxSpeed = maxSpeed*3600; break;
+			case 3: angleControl_int32 = (int32_t)(angleControl*800.0); maxSpeed = maxSpeed*800; break;
+			case 2: angleControl_int32 = (int32_t)(angleControl*3600.0); maxSpeed = maxSpeed*3600; break;
 			default:printf("id error\n"); break;
     }
     buf[2] = *(uint8_t *)(& maxSpeed);
     buf[3] = *((uint8_t *)(& maxSpeed)+1);
-    buf[4] = *(uint8_t *)(& angleControl);
-    buf[5] = *((uint8_t *)(& angleControl)+1);
-    buf[6] = *((uint8_t *)(& angleControl)+2);
-    buf[7] = *((uint8_t *)(& angleControl)+3);
+    buf[4] = *(int8_t *)(& angleControl_int32);
+    buf[5] = *((int8_t *)(& angleControl_int32)+1);
+    buf[6] = *((int8_t *)(& angleControl_int32)+2);
+    buf[7] = *((int8_t *)(& angleControl_int32)+3);
     can_send(buf, id);
     ms_Delay(command_interval_time);
 }

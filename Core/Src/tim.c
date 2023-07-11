@@ -113,6 +113,7 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	run_fourier_series_traj();
+//	LinearActuator_startRun_maxspeed_position(1, 60, 100);
 }
 
 /* USER CODE END 1 */

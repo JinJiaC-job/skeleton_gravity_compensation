@@ -34,4 +34,4 @@ lkmotors_can/can.o: ..\Core\Src\can.c ..\Core\Inc\can.h \
   ..\Core\Inc\usart.h \
   G:\APPs\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   G:\APPs\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  ..\Core\Inc\lkmoto.h
+  ..\Core\Inc\lkmoto.h IDS830_CAN\ids830can.h

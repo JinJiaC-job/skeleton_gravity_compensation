@@ -26,6 +26,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "lkmoto.h"
+#include "ids830can.h"
 CAN_TxHeaderTypeDef hCAN1_TxHeader; //CAN1发送消息
 CAN_RxHeaderTypeDef hCAN1_RxHeader; //CAN1接收消息
 	
@@ -169,21 +170,32 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
   uint8_t aRxData[8]={0};
   if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &hCAN1_RxHeader, aRxData) == HAL_OK)
-    {
-//      printf("\nGet Rx Message Success!!\nData:");
-      for(int i=0; i<8; i++)
+  {
+		if(aRxData[1] == 0x2b && aRxData[2] == 0xe8 && aRxData[5] == 0xe9)
+		{
+			for(int i=0; i<8; i++)
 			{
-//        printf("%x,", aRxData[i]);
-			  CAN_motor_data[i] = aRxData[i];
+				ids830_position[i] = aRxData[i];
 			}
-//			printf("\n");
-    }
-	// HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &hCAN1_RxHeader, aRxData);
-//  for(int i=0;i<8;i++)
-//  {
-//    CAN_motor_data[i] = aRxData[i];
-//  }
-  
+//			HAL_UART_Transmit(&huart1, ids830_position, 8, 10);
+		}
+		else if(aRxData[1] == 0x2b && aRxData[2] == 0xe2 && aRxData[5] == 0xe4)
+		{
+			for(int i=0; i<8; i++)
+			{
+				ids830_currentAndspeed[i] = aRxData[i];
+			}
+//			HAL_UART_Transmit(&huart1, ids830_currentAndspeed, 8, 10);
+		}
+		else
+		{
+			for(int i=0;i<8;i++)
+			{
+				CAN_motor_data[i] = aRxData[i];
+			}
+//			HAL_UART_Transmit(&huart1, CAN_motor_data, 8, 10);
+		}
+  }
 }
 
 

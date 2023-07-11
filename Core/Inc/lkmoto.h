@@ -22,7 +22,7 @@
 //控制命令间隔
 #define command_interval_time 2
 
-extern int8_t CAN_motor_data[8];//电机接收数据
+extern uint8_t CAN_motor_data[8];//电机接收数据
 extern uint32_t circleAngle;//电机角度值
 
 //can 总线 send 函数 移植仅需修改此函数

@@ -1,8 +1,12 @@
 #include "ids830can.h"
 
-
+#include "lkmoto.h"
 #include "can.h"
 #include "stdio.h"
+#include "usart.h"
+
+uint8_t ids830_position[8] = {0};//电缸接收数据
+uint8_t ids830_currentAndspeed[8] = {0};//电缸接收数据
 
 void IDS830_can_send(uint8_t *buf,uint8_t id)
 {
@@ -76,20 +80,35 @@ void LinearActuator_startRun_maxspeed_position(uint8_t id, float position, float
 	position = position * 2500;
 	maxspeed = maxspeed/3000*8192;
 	writeData_pointTopoint(id, 0x00, 0x00, 0x0001, 0x1d, maxspeed);
-	writeData_pointTopoint(id, 0x00, 0x50, ((uint32_t)position & 0xffff0000) >> 16, 0x05, (uint32_t)position & 0x0000ffff);
+	writeData_pointTopoint(id, 0x00, 0x50, ((int32_t)position & 0xffff0000) >> 16, 0x05, (int32_t)position & 0x0000ffff);
+	
+	HAL_Delay(Linear_cmd_interval_time);
 }
 
 void LinearActuator_read_position(uint8_t id)
 {
 	uint32_t LinAcr_position = 0;
+	float LinAcr_position_float = 0;
+	
 	readData_pointTopoint(id, 0x00, 0xe8, 0x0000, 0xe9, 0x0000);
-	*(uint8_t *)(&LinAcr_position) = CAN_motor_data[7];
-	*((uint8_t *)(&LinAcr_position)+1) = CAN_motor_data[6];
-	*((uint8_t *)(&LinAcr_position)+2) = CAN_motor_data[4];
-	*((uint8_t *)(&LinAcr_position)+3) = CAN_motor_data[3];
-	float LinAcr_position_float = (float)LinAcr_position/2500;
+//	if(CAN_motor_data[2] == 0xe8)
+//	{
+//		LinAcr_position = ((uint32_t)CAN_motor_data[3]<<24) | ((uint32_t)CAN_motor_data[4]<<16) | ((uint32_t)CAN_motor_data[6]<<8) | ((uint32_t)CAN_motor_data[7]);
+		
+		*(uint8_t *)(&LinAcr_position) = ids830_position[7];
+		*((uint8_t *)(&LinAcr_position)+1) = ids830_position[6];
+		*((uint8_t *)(&LinAcr_position)+2) = ids830_position[4];
+		*((uint8_t *)(&LinAcr_position)+3) = ids830_position[3];
 //	return  LinAcr_position;
-	printf("LinearActuator_position%d: %.3f mm\r\n", id, LinAcr_position_float);
+    LinAcr_position_float = (int32_t)LinAcr_position/2500.0;
+//		HAL_UART_Transmit(&huart1, (uint8_t*)&LinAcr_position, 4, 5);
+	  printf("LinearActuator_position%d: %.3f mm\r\n", id, LinAcr_position_float);
+//	}
+	for(int i=0; i<8; i++)
+	{
+		CAN_motor_data[i] = 0;
+	}
+	HAL_Delay(Linear_cmd_interval_time);
 }
 
 void LinearActuator_read_CurrentandSpeed(uint8_t id)
@@ -98,16 +117,27 @@ void LinearActuator_read_CurrentandSpeed(uint8_t id)
 	uint16_t LinAcr_speed = 0;
 	
 	readData_pointTopoint(id, 0x00, 0xe2, 0x0000, 0xe4, 0x0000);
-	*(uint8_t *)(&LinAcr_current) = CAN_motor_data[4];
-	*((uint8_t *)(&LinAcr_current)+1) = CAN_motor_data[3];
-	float LinAcr_current_float = (float)LinAcr_current/100;
-	printf("LinearActuator_current%d: %.3f mm\r\n", id, LinAcr_current_float);
-	
-	*(uint8_t *)(&LinAcr_speed) = CAN_motor_data[7];
-	*((uint8_t *)(&LinAcr_speed)+1) = CAN_motor_data[6];
-	float LinAcr_speed_float = (float)LinAcr_speed/8192*3000;
-	printf("LinearActuator_speed%d: %.3f mm\r\n", id, LinAcr_speed_float);
+//	if(CAN_motor_data[2] == 0xe2 && CAN_motor_data[5] == 0xe4)
+//	{
+		*(uint8_t *)(&LinAcr_current) = ids830_currentAndspeed[4];
+		*((uint8_t *)(&LinAcr_current)+1) = ids830_currentAndspeed[3];
+		float LinAcr_current_float = (int16_t)LinAcr_current/100.0;
+		printf("LinearActuator_current%d: %.3fA\r\n", id, LinAcr_current_float);
+//		HAL_UART_Transmit(&huart1, (uint8_t*)&LinAcr_current, 2, 5);
+		
+		*(uint8_t *)(&LinAcr_speed) = ids830_currentAndspeed[7];
+		*((uint8_t *)(&LinAcr_speed)+1) = ids830_currentAndspeed[6];
+		float LinAcr_speed_float = (int16_t)LinAcr_speed/8192.0*3000.0;
+		printf("LinearActuator_speed%d: %.3frpm\r\n", id, LinAcr_speed_float);
+//		HAL_UART_Transmit(&huart1, (uint8_t*)&LinAcr_speed, 2, 5);
+//	}
+	for(int i=0; i<8; i++)
+	{
+		CAN_motor_data[i] = 0;
+	}			
+	HAL_Delay(Linear_cmd_interval_time);
 }
+
 
 
 
