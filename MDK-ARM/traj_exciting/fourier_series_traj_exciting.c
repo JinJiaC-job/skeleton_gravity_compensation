@@ -6,10 +6,10 @@
 #include "fourier_series_traj_exciting.h"
 #include "tim.h"
 
-//电机控制时间点：
+//电机控制时间节点：
 unsigned int motor_control_k = 0;
 //motor control interval time：每过motor control interval time秒输出一次控制命令
-float control_interval_time = 0.01;
+float control_interval_time = 0.1;
 // sampling period
 float traj_Ts = 0.1;
 // trajectory fundamental frequency = 1/T; T = run time of skeleton = 20s.
@@ -129,14 +129,14 @@ void run_fourier_series_traj(void)
 		if(i == 1)
 		{
 			q[i] = q[i]*1000;
-			motor_speed = fabs((q[i]-q_last[i])/control_interval_time)+1;//fabs:float类型的绝对值函数
+			motor_speed = fabs((q[i]-q_last[i])/control_interval_time);//fabs:float类型的绝对值函数
 			LinearActuator_startRun_maxspeed_position(i, q[i], motor_speed);
 			q_last[i] = q[i];
 		}
 		else
 		{
 			q[i] = q[i]/pi*180;
-			motor_speed = fabs((q[i]-q_last[i])/control_interval_time)+1;//fabs:float类型的绝对值函数
+			motor_speed = fabs((q[i]-q_last[i])/control_interval_time);//fabs:float类型的绝对值函数
 			angle_close_loop_with_speed(i, q[i], motor_speed);
 			q_last[i] = q[i];
 		}

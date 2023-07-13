@@ -100,41 +100,44 @@ int main(void)
   MX_USART1_UART_Init();
   MX_ADC1_Init();
   MX_TIM2_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 	CAN_Filter_Init();
 	traj_exciting_init();
 	
-// //运行电机motor1~motor5
-// 	for(int i=2;i<=6;i++)
-// 	{
-// 		motor_run(i);
-// 	}
-//	//读取编码器位置，并将编码器零偏值写入ROM作为电机零点(需删除)
-//	for(int i=2;i<=6;i++)
-//	{
-//		read_encoder(i);
-//		uint16_t encoderOffset = 0;
-//		*(uint8_t *)(&encoderOffset) = CAN_motor_data[6];
-//		*((uint8_t *)(&encoderOffset)+1) = CAN_motor_data[7];
-//		write_encoder_offset(i, encoderOffset);
-//	}
-//	printf("\nset motors zero point Success!!\r\n");
-//	ske_base_position();
-
-//	for(int i=1; i<=6; i++)
-//	{
-//		if(i == 1)
-//		{
-//			LinearActuator_read_position(i);
-//			LinearActuator_read_CurrentandSpeed(i);
-//			pressure_SensorReading();
-//		}
-//		else
-//			read_status2(i);
-//			read_angle(i);
-//	}
+//运行电机motor1~motor5
+ 	for(int i=2;i<=6;i++)
+ 	{
+ 		motor_run(i);
+ 	}
 	
-//	HAL_TIM_Base_Start_IT(&htim2);
+////写入当前位置到ROM作为零点(多次写入会影响芯片寿命，不建议频繁使用)
+// 	HAL_Delay(1000);
+// 	for(int i=1;i<=6;i++)
+// 	{
+// 		write_current_position_to_rom(i);
+// 		HAL_Delay(500);
+// 	}
+	
+//外骨骼初始位置	
+  ske_base_position();
+
+//先读取一次各关节数据	
+	for(int i=1; i<=6; i++)
+	{
+		if(i == 1)
+		{
+			LinearActuator_read_position(i);
+			LinearActuator_read_CurrentandSpeed(i);
+			pressure_SensorReading();
+		}
+		else
+			read_status2(i);
+			read_angle(i);
+	}
+	
+//开启定时器中断：每隔0.01s发送一次控制命令
+	HAL_TIM_Base_Start_IT(&htim2);
 
   /* USER CODE END 2 */
 
@@ -142,22 +145,20 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//		LinearActuator_read_position(1);
-//		LinearActuator_read_CurrentandSpeed(1);
-//		for(int i=1; i<=6; i++)
-//		{
-//			if(i == 1)
-//			{
-//				LinearActuator_read_position(i);
-//				LinearActuator_read_CurrentandSpeed(i);
-//				pressure_SensorReading();
-//			}
-//			else
-//				read_status2(i);
-//			  read_angle(i);
-//		}
-//		if(motor_control_k >= 2000)
-//			break;
+		for(int i=1; i<=6; i++)
+		{
+			if(i == 1)
+			{
+				LinearActuator_read_position(i);
+				LinearActuator_read_CurrentandSpeed(i);
+				pressure_SensorReading();
+			}
+			else
+				read_status2(i);
+			  read_angle(i);
+		}
+		if(motor_control_k >= 200)
+			break;
 		
 
     /* USER CODE END WHILE */
@@ -165,6 +166,26 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
   }
+	LinearActuator_startRun_maxspeed_position(1, 0, 10);
+	angle_close_loop_with_speed(2, 0, 10);
+	angle_close_loop_with_speed(3, 0, 10);
+	angle_close_loop_with_speed(4, 0, 10);
+	angle_close_loop_with_speed(5, 0, 10);
+	angle_close_loop_with_speed(6, 0, 10);
+	for(int i=1; i<=6; i++)
+	{
+		if(i == 1)
+			LinearActuator_startRun_maxspeed_position(i, 0, 10);
+		
+		else if(i == 4)
+			angle_close_loop_with_speed(i, 0, 20);
+		else if(i == 5)
+			angle_close_loop_with_speed(i, 0, 20);
+		
+		else
+			angle_close_loop_with_speed(i, 0, 20);
+		HAL_Delay(1000);
+	}
 	printf("exciting traj experiment end!!!\n");
   /* USER CODE END 3 */
 }

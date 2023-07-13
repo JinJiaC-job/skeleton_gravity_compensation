@@ -177,7 +177,6 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 			{
 				ids830_position[i] = aRxData[i];
 			}
-//			HAL_UART_Transmit(&huart1, ids830_position, 8, 10);
 		}
 		else if(aRxData[1] == 0x2b && aRxData[2] == 0xe2 && aRxData[5] == 0xe4)
 		{
@@ -185,16 +184,29 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 			{
 				ids830_currentAndspeed[i] = aRxData[i];
 			}
-//			HAL_UART_Transmit(&huart1, ids830_currentAndspeed, 8, 10);
+		}
+		else if(aRxData[0] == 0x92)
+		{
+			for(int i=0;i<8;i++)
+			{
+				CAN_motor_angle[i] = aRxData[i];
+			}
+//			HAL_UART_Transmit(&huart1, CAN_motor_angle, 8, 5);
+		}
+		else if(aRxData[0] == 0x9C)
+		{
+			for(int i=0;i<8;i++)
+			{
+				CAN_motor_currentAndspeed[i] = aRxData[i];
+			}
+//			HAL_UART_Transmit(&huart1, CAN_motor_currentAndspeed, 8, 5);
 		}
 		else
-		{
 			for(int i=0;i<8;i++)
 			{
 				CAN_motor_data[i] = aRxData[i];
 			}
-//			HAL_UART_Transmit(&huart1, CAN_motor_data, 8, 10);
-		}
+//			HAL_UART_Transmit(&huart1, CAN_motor_data, 8, 5);
   }
 }
 

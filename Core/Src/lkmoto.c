@@ -5,14 +5,17 @@
 #include "can.h"
 #include "stdio.h"
 #include "ids830can.h"
+#include "tim.h"
 
 void ms_Delay(uint16_t t_ms)
 {
-	uint32_t t=t_ms*3127;
+	uint32_t t=t_ms*8000;//要考虑主频3127
 	while(t--);
 }
 
 uint8_t CAN_motor_data[8] = {0};//电机接收数据
+uint8_t CAN_motor_angle[8] = {0};//电机接收角度数据
+uint8_t CAN_motor_currentAndspeed[8] = {0};//电机接收电流和速度数据
 uint32_t circleAngle;//电机角度值
 
 //can 总线 send 函数 移植仅需修改此函数
@@ -239,7 +242,7 @@ void write_acc(uint8_t id, float Accel){
 void read_encoder(uint8_t id){
     uint8_t buf[LEN] = {0x90, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     can_send(buf, id);
-		HAL_Delay(command_interval_time);
+		Delay_ms(command_interval_time);
 }
 
 
@@ -265,7 +268,7 @@ void read_encoder(uint8_t id){
 void write_encoder_offset(uint8_t id, uint16_t encoderOffset){
     uint8_t buf[LEN] = {0x91, 0x00, 0x00, 0x00, 0x00, 0x00, *(uint8_t *)(&encoderOffset), *((uint8_t *)(&encoderOffset)+1)};
     can_send(buf, id);
-		HAL_Delay(command_interval_time);
+		Delay_ms(command_interval_time);
 }
 
 
@@ -320,24 +323,25 @@ void write_current_position_to_rom(uint8_t id){
 
 void read_angle(uint8_t id){
     uint8_t buf[LEN] = {0x92, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-		int64_t motorAngle;
+		uint64_t motorAngle;
+		float motorAngle_float;
     can_send(buf, id);
-		HAL_Delay(1);
+		Delay_ms(1);
 		for(int i=0; i<7; i++)
 		{
-			*((uint8_t *)(& motorAngle)+i) = CAN_motor_data[i+1];
+			*((uint8_t *)(& motorAngle)+i) = CAN_motor_angle[i+1];
 		}
 		switch(id)
 		{
-			case 6: motorAngle = motorAngle/1000; break;
-			case 5: motorAngle = motorAngle/800; break;
-			case 4: motorAngle = motorAngle/3600; break;
-			case 3: motorAngle = motorAngle/800; break;
-			case 2: motorAngle = motorAngle/3600; break;
+			case 6: motorAngle_float = (float)((int32_t)motorAngle/1000.0); break;
+			case 5: motorAngle_float = (float)((int32_t)motorAngle/800.0); break;
+			case 4: motorAngle_float = (float)((int32_t)motorAngle/3600.0); break;
+			case 3: motorAngle_float = (float)((int32_t)motorAngle/800.0); break;
+			case 2: motorAngle_float = (float)((int32_t)motorAngle/3600.0); break;
 			default:printf("id error\n"); break;
     }
-		printf("motor_angle%d: %.3lld du\r\n", id, motorAngle);
-    HAL_Delay(command_interval_time);
+		printf("motor_angle%d: %.3fdu\r\n", id, motorAngle_float);
+    Delay_ms(command_interval_time);
 }
 
 
@@ -370,7 +374,7 @@ void read_angle(uint8_t id){
 void read_angle_single(uint8_t id){
     uint8_t buf[LEN] = {0x94, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     can_send(buf, id);
-    HAL_Delay(command_interval_time);
+    Delay_ms(command_interval_time);
 	for(int i=0;i<4;i++)
 	{
 		*((uint8_t *)(& circleAngle)+i) = CAN_motor_data[4+i];
@@ -497,20 +501,24 @@ void clear_error(uint8_t id){
 
 
 void read_status2(uint8_t id){
-	float motor_current, motor_speed;
+	uint16_t motor_current, motor_speed;
+	float motor_current_float=0, motor_speed_float=0;
+	
 	uint8_t buf[LEN] = {0x9C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 	can_send(buf, id);
-	HAL_Delay(2);
-	*(uint8_t *)(&motor_current) = CAN_motor_data[2];
-	*((uint8_t *)(&motor_current)+1) = CAN_motor_data[3];
-	motor_current = motor_current/2048*33;
-	printf("motor_current%d: %.3f A\r\n", id, motor_current);
+	Delay_ms(2);
 	
-	*(uint8_t *)(&motor_speed) = CAN_motor_data[4];
-	*((uint8_t *)(&motor_speed)+1) = CAN_motor_data[5];
-	printf("motor_speed%d: %.3f dps\r\n", id, motor_speed);
+	*(uint8_t *)(&motor_current) = CAN_motor_currentAndspeed[2];
+	*((uint8_t *)(&motor_current)+1) = CAN_motor_currentAndspeed[3];
+	motor_current_float = (float)((int16_t)motor_current/2048.0*33.0);
+	printf("motor_current%d: %.3fA\r\n", id, motor_current_float);
 	
-	HAL_Delay(command_interval_time);
+	*(uint8_t *)(&motor_speed) = CAN_motor_currentAndspeed[4];
+	*((uint8_t *)(&motor_speed)+1) = CAN_motor_currentAndspeed[5];
+//	motor_speed_float = (int16_t)motor_speed;
+	printf("motor_speed%d: %ddps\r\n", id, (int16_t)motor_speed);
+	
+	Delay_ms(command_interval_time);
 }
 
 
@@ -613,7 +621,7 @@ void motor_stop(uint8_t id){
 void motor_run(uint8_t id){
     uint8_t buf[LEN] = {0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     can_send(buf, id);
-    HAL_Delay(command_interval_time);
+    Delay_ms(command_interval_time);
 }
 
 
@@ -693,7 +701,7 @@ void torque_close_loop(uint8_t id, int16_t iqControl){
     buf[4] = *(uint8_t *)(& iqControl);
     buf[5] = *((uint8_t *)(& iqControl)+1);
     can_send(buf, id);
-    HAL_Delay(command_interval_time);
+    Delay_ms(command_interval_time);
 }
 
 
@@ -783,7 +791,7 @@ void angle_close_loop(uint8_t id, int32_t angleControl){
     buf[6] = *((uint8_t *)(& angleControl)+2);
     buf[7] = *((uint8_t *)(& angleControl)+3);
     can_send(buf, id);
-    HAL_Delay(command_interval_time);
+    Delay_ms(command_interval_time);
 }
 
 
@@ -824,26 +832,27 @@ void angle_close_loop(uint8_t id, int32_t angleControl){
 // DATA[7] 编码器位置高字节 DATA[7] = *((uint8_t *)(&encoder)+1)
 
 
-void angle_close_loop_with_speed(uint8_t id, float angleControl, uint16_t maxSpeed){
+void angle_close_loop_with_speed(uint8_t id, float angleControl, float maxSpeed){
     uint8_t buf[LEN] = {0xA4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 		int32_t angleControl_int32;
+		int16_t maxSpeed_int16;
 		switch(id)
 		{
-			case 6: angleControl_int32 = (int32_t)(angleControl*1000.0); maxSpeed = maxSpeed*1000; break;
-			case 5: angleControl_int32 = (int32_t)(angleControl*800.0); maxSpeed = maxSpeed*800; break;
-			case 4: angleControl_int32 = (int32_t)(angleControl*3600.0); maxSpeed = maxSpeed*3600; break;
-			case 3: angleControl_int32 = (int32_t)(angleControl*800.0); maxSpeed = maxSpeed*800; break;
-			case 2: angleControl_int32 = (int32_t)(angleControl*3600.0); maxSpeed = maxSpeed*3600; break;
+			case 6: angleControl_int32 = (int32_t)(angleControl*1000.0); maxSpeed_int16 = (uint16_t)maxSpeed*10.0; break;
+			case 5: angleControl_int32 = (int32_t)(angleControl*800.0); maxSpeed_int16 = (uint16_t)maxSpeed*8.0; break;
+			case 4: angleControl_int32 = (int32_t)(angleControl*3600.0); maxSpeed_int16 = (uint16_t)maxSpeed*36.0; break;
+			case 3: angleControl_int32 = (int32_t)(angleControl*800.0); maxSpeed_int16 = (uint16_t)maxSpeed*8.0; break;
+			case 2: angleControl_int32 = (int32_t)(angleControl*3600.0); maxSpeed_int16 = (uint16_t)maxSpeed*36.0; break;
 			default:printf("id error\n"); break;
     }
-    buf[2] = *(uint8_t *)(& maxSpeed);
-    buf[3] = *((uint8_t *)(& maxSpeed)+1);
-    buf[4] = *(int8_t *)(& angleControl_int32);
-    buf[5] = *((int8_t *)(& angleControl_int32)+1);
-    buf[6] = *((int8_t *)(& angleControl_int32)+2);
-    buf[7] = *((int8_t *)(& angleControl_int32)+3);
+    buf[2] = *(uint8_t *)(&maxSpeed_int16);
+    buf[3] = *((uint8_t *)(&maxSpeed_int16)+1);
+    buf[4] = *(uint8_t *)(&angleControl_int32);
+    buf[5] = *((uint8_t *)(&angleControl_int32)+1);
+    buf[6] = *((uint8_t *)(&angleControl_int32)+2);
+    buf[7] = *((uint8_t *)(&angleControl_int32)+3);
     can_send(buf, id);
-    ms_Delay(command_interval_time);
+    Delay_ms(command_interval_time);
 }
 
 //(24)
@@ -936,7 +945,7 @@ void angle_close_loop_with_direction_and_speed(uint8_t id, int32_t angleControl,
     buf[4] = *(uint8_t *)(& angleControl);
     buf[5] = *((uint8_t *)(& angleControl)+1);
     can_send(buf, id);
-		HAL_Delay(1);
+		Delay_ms(1);
 }
 
 
@@ -1031,7 +1040,7 @@ void angle_close_loop_with_direction_and_angle_and_max_speed(uint8_t id, int32_t
     buf[6] = *((uint8_t *)(& angleControl)+2);
     buf[7] = *((uint8_t *)(& angleControl)+3);
     can_send(buf, id);
-	HAL_Delay(10);
+	Delay_ms(10);
 }
 
 //motor1:角度需要乘上减速比：360°=36000*10=360000
@@ -1052,32 +1061,32 @@ void ske_base_position(void)
 // 		HAL_Delay(1000);
 // 	}
 	
-//读取编码器位置，并将编码器零偏值写入ROM作为电机零点
-	for(int i=2;i<=6;i++)
-	{
-		read_encoder(i);
-		uint16_t encoderOffset = 0;
-		*(uint8_t *)(&encoderOffset) = CAN_motor_data[6];
-		*((uint8_t *)(&encoderOffset)+1) = CAN_motor_data[7];
-		write_encoder_offset(i, encoderOffset);
-	}
-	printf("\nset motors zero point Success!!\r\n");
+////读取编码器位置，并将编码器零偏值写入ROM作为电机零点
+//	for(int i=2;i<=6;i++)
+//	{
+//		read_encoder(i);
+//		uint16_t encoderOffset = 0;
+//		*(uint8_t *)(&encoderOffset) = CAN_motor_data[6];
+//		*((uint8_t *)(&encoderOffset)+1) = CAN_motor_data[7];
+//		write_encoder_offset(i, encoderOffset);
+//	}
+//	printf("\nset motors zero point Success!!\r\n");
 	
 	//所有电机及电缸回到初始位置
 	for(int i=1; i<=6; i++)
 	{
 		if(i == 1)
-			LinearActuator_startRun_maxspeed_position(i, 0, 120);
+			LinearActuator_startRun_maxspeed_position(i, 0, 10);
 		
 		else if(i == 4)
-			angle_close_loop_with_speed(i, -90, 1000);
+			angle_close_loop_with_speed(i, -90, 10);
 		else if(i == 5)
-			angle_close_loop_with_speed(i, 90, 1000);
+			angle_close_loop_with_speed(i, 90, 10);
 		
 		else
-			angle_close_loop_with_speed(i, 0, 1000);
+			angle_close_loop_with_speed(i, 0, 10);
 	}
-	HAL_Delay(10000);
+	Delay_ms(5000);
 }
 
 //读取五个关节扭矩电流
@@ -1086,7 +1095,7 @@ void read_5torque_current(void)
 	for(int i=0;i<6;i++)
 	{
 		read_status2(i);
-		HAL_Delay(1000);
+		Delay_ms(1000);
 	}
 	printf("\nGet Agroup of turque current Message Success!!");
 }

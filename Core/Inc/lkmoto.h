@@ -23,6 +23,8 @@
 #define command_interval_time 2
 
 extern uint8_t CAN_motor_data[8];//电机接收数据
+extern uint8_t CAN_motor_angle[8];
+extern uint8_t CAN_motor_currentAndspeed[8];
 extern uint32_t circleAngle;//电机角度值
 
 //can 总线 send 函数 移植仅需修改此函数
@@ -660,7 +662,7 @@ void angle_close_loop(uint8_t id, int32_t angleControl);
 
 
 
-void angle_close_loop_with_speed(uint8_t id, float angleControl, uint16_t maxSpeed);
+void angle_close_loop_with_speed(uint8_t id, float angleControl, float maxSpeed);
 
 
 //  位置闭环控制命令 3 0xA5
