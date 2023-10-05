@@ -27,18 +27,21 @@
 #include "math.h"
 
 void Delay_us(uint32_t us){
-		uint16_t differ = 0xffff-us-5;				
-	__HAL_TIM_SET_COUNTER(&htim2,differ);	//设定TIM7计数器起始值
-	HAL_TIM_Base_Start(&htim2);		//启动定时器	
+	uint16_t differ = 0xffff-us-5;				
+	__HAL_TIM_SET_COUNTER(&htim3,differ);	//设定TIM3计数器起始值
+	HAL_TIM_Base_Start(&htim3);		//启动定时器	
 	
 	while(differ < 0xffff-5){	//判断
-		differ = __HAL_TIM_GET_COUNTER(&htim2);		//查询计数器的计数值
+		differ = __HAL_TIM_GET_COUNTER(&htim3);		//查询计数器的计数值
 	}
-	HAL_TIM_Base_Stop(&htim2);
+	HAL_TIM_Base_Stop(&htim3);
 }
+
 void Delay_ms(uint32_t ms){
 	while(ms--)
-	Delay_us(1000);
+	{
+		Delay_us(1000);
+	}
 }
 
 /* USER CODE END 0 */
@@ -63,7 +66,7 @@ void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 7199;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 999;
+  htim2.Init.Period = 499;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -139,7 +142,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
     __HAL_RCC_TIM2_CLK_ENABLE();
 
     /* TIM2 interrupt Init */
-    HAL_NVIC_SetPriority(TIM2_IRQn, 2, 0);
+    HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(TIM2_IRQn);
   /* USER CODE BEGIN TIM2_MspInit 1 */
 
@@ -192,7 +195,6 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	run_fourier_series_traj();
-//	LinearActuator_startRun_maxspeed_position(1, 60, 100);
 }
 
 /* USER CODE END 1 */

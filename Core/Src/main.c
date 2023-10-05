@@ -101,6 +101,7 @@ int main(void)
   MX_ADC1_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
+  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 	CAN_Filter_Init();
 	traj_exciting_init();
@@ -110,7 +111,7 @@ int main(void)
  	{
  		motor_run(i);
  	}
-	
+
 ////写入当前位置到ROM作为零点(多次写入会影响芯片寿命，不建议频繁使用)
 // 	HAL_Delay(1000);
 // 	for(int i=1;i<=6;i++)
@@ -118,6 +119,7 @@ int main(void)
 // 		write_current_position_to_rom(i);
 // 		HAL_Delay(500);
 // 	}
+//	printf("zero point set successfully!");
 	
 //外骨骼初始位置	
   ske_base_position();
@@ -136,9 +138,9 @@ int main(void)
 			read_angle(i);
 	}
 	
-//开启定时器中断：每隔0.01s发送一次控制命令
+//开启定时器中断：每隔0.05s发送一次控制命令
 	HAL_TIM_Base_Start_IT(&htim2);
-
+  printf("start!!!\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -157,36 +159,52 @@ int main(void)
 				read_status2(i);
 			  read_angle(i);
 		}
-		if(motor_control_k >= 200)
+		if(motor_control_k > 400)
+		{
 			break;
+		}
 		
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
   }
-	LinearActuator_startRun_maxspeed_position(1, 0, 10);
-	angle_close_loop_with_speed(2, 0, 10);
-	angle_close_loop_with_speed(3, 0, 10);
-	angle_close_loop_with_speed(4, 0, 10);
-	angle_close_loop_with_speed(5, 0, 10);
-	angle_close_loop_with_speed(6, 0, 10);
+	HAL_Delay(500);
+
 	for(int i=1; i<=6; i++)
 	{
 		if(i == 1)
-			LinearActuator_startRun_maxspeed_position(i, 0, 10);
+			LinearActuator_startRun_maxspeed_position(i, 0, 30);
 		
 		else if(i == 4)
-			angle_close_loop_with_speed(i, 0, 20);
+			angle_close_loop_with_speed(i, 0, 30);
 		else if(i == 5)
-			angle_close_loop_with_speed(i, 0, 20);
+			angle_close_loop_with_speed(i, 0, 30);
+		else if(i == 6)
+			angle_close_loop_with_speed(i, 0, 30);
 		
 		else
-			angle_close_loop_with_speed(i, 0, 20);
-		HAL_Delay(1000);
+			angle_close_loop_with_speed(i, 0, 30);
 	}
+	for(int count=1; count<40; count++)
+	{
+		for(int i=1; i<=6; i++)
+		{
+			if(i == 1)
+			{
+				LinearActuator_read_position(i);
+				LinearActuator_read_CurrentandSpeed(i);
+				pressure_SensorReading();
+			}
+			else
+				read_status2(i);
+			  read_angle(i);
+		}
+		HAL_Delay(100);
+	}
+
 	printf("exciting traj experiment end!!!\n");
+	
   /* USER CODE END 3 */
 }
 

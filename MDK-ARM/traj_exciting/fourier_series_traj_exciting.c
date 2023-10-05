@@ -9,7 +9,7 @@
 //电机控制时间节点：
 unsigned int motor_control_k = 0;
 //motor control interval time：每过motor control interval time秒输出一次控制命令
-float control_interval_time = 0.1;
+float control_interval_time = 0.05;
 // sampling period
 float traj_Ts = 0.1;
 // trajectory fundamental frequency = 1/T; T = run time of skeleton = 20s.
@@ -24,75 +24,76 @@ uint8_t traj_order = 5;
 uint8_t dof = 6;
 // 6个关节角度信息
 float q[7] = {0};
-float q_last[7] = {0, 0, 0, 0, -90, 90, 0};
+float q_last[7] = {0, 0, 0, 0, 0, 0, 0};
+float q_next[7] = {0};
 // fourier series params
 float traj_param[] = {0,
--0.0017057,
-0.009662,
-0.00055857,
-0.0025355,
--0.026887,
-0.058019,
-0.0052519,
--0.0055934,
-0.023903,
--0.033055,
-0.07243,
--0.018499,
--0.079521,
--0.13061,
-0.15341,
--0.091243,
-0.1497,
-0.30147,
--0.026215,
--0.061113,
--0.11431,
-0.056254,
-0.029636,
--0.02684,
-0.051749,
--0.012772,
-0.50174,
--0.12077,
--0.39032,
-0.074961,
--0.19281,
-0.022967,
--0.15964,
--0.06973,
-0.22619,
-0.59372,
-0.003307,
-0.1758,
-0.12936,
--0.32981,
-0.354,
--0.36998,
--0.40737,
--0.68594,
-0.018378,
-0.048977,
-0.42348,
--0.47845,
-0.24679,
--0.087001,
--0.6775,
-0.32875,
--0.011139,
--0.02922,
-1.1159,
-0.17247,
--0.26386,
--0.29541,
-0.49242,
--0.18677,
-0.11182,
-0.26263,
--0.14801,
-0.047067,
--0.092879,
--0.11444};
+0.13249,
+0.84265,
+-0.61763,
+-0.62935,
+1.1823,
+0.51965,
+-1.0063,
+-0.18653,
+0.3091,
+-0.079349,
+97.383,
+-0.16202,
+0.037126,
+0.14317,
+-0.0095187,
+-0.13003,
+-0.12242,
+0.10733,
+0.0451,
+0.041543,
+0.033753,
+0.030514,
+0.062815,
+-0.13427,
+0.048746,
+0.018498,
+-0.025162,
+0.093033,
+0.33808,
+-0.088307,
+-0.42448,
+0.034281,
+-0.34769,
+0.04826,
+-0.006213,
+0.054578,
+0.26625,
+0.16519,
+-0.11289,
+-0.12732,
+0.040054,
+-0.14071,
+-0.069567,
+-1.299,
+0.17329,
+0.045145,
+-0.14034,
+-0.011873,
+0.36856,
+-0.12058,
+0.016315,
+0.32496,
+-0.41783,
+-0.1919,
+1.7041,
+-0.18458,
+0.093306,
+-0.21073,
+-0.039703,
+-0.22417,
+-0.07346,
+0.72046,
+0.13674,
+-0.10098,
+-0.068099,
+0.22133};
 
 
 void fourier_series_traj(float time)
@@ -110,6 +111,12 @@ void fourier_series_traj(float time)
 		{
 			// alpha(a)=traj_param(m+2*(j-1)+1), beta(b)=traj_param(m+2*(j-1)+2)
 			q[i] = q[i] + ((traj_param[m + 2*(j-1) + 1] / (traj_wf * j)) * sin(traj_wf * j * time) - (traj_param[m + 2*(j-1) + 2] / (traj_wf * j)) * cos(traj_wf * j * time));
+//			if(motor_control_k<200)
+//			{
+//				q_next[i] = q[i] + ((traj_param[m + 2*(j-1) + 1] / (traj_wf * j)) * sin(traj_wf * j * (time+control_interval_time)) - (traj_param[m + 2*(j-1) + 2] / (traj_wf * j)) * cos(traj_wf * j * (time+control_interval_time)));
+//			}
+//			else
+//				q_next[i] = q[i];
 		}
 	}
 }
@@ -128,20 +135,62 @@ void run_fourier_series_traj(void)
 	{
 		if(i == 1)
 		{
-			q[i] = q[i]*1000;
+			q[i] = q[i]-95.35;//直线电缸单位mm
+//			q_next[i] = q_next[i]*1000;
 			motor_speed = fabs((q[i]-q_last[i])/control_interval_time);//fabs:float类型的绝对值函数
 			LinearActuator_startRun_maxspeed_position(i, q[i], motor_speed);
 			q_last[i] = q[i];
+//			printf("linear=%.3f, linearSpeed=%.3f\r\n",q[1], motor_speed);
+		}
+		else if(i == 4)
+		{
+			q[i] = q[i]/pi*180 + 90;
+//			q_next[i] = q_next[i]/pi*180;
+			motor_speed = fabs((q[i]-q_last[i])/control_interval_time);//fabs:float类型的绝对值函数
+			if(motor_speed<1)//速度不能太小
+				motor_speed=1;
+			angle_close_loop_with_speed(i, -q[i], motor_speed);
+			q_last[i] = q[i];
+//			printf("MOTORSPEED4=%.3f, MOTORpos4=%.3f\r\n", motor_speed, q[4]);
+		}
+		else if(i == 5)
+		{
+			q[i] = q[i]/pi*180 - 90;
+//			q_next[i] = q_next[i]/pi*180;
+			motor_speed = fabs((q[i]-q_last[i])/control_interval_time);//fabs:float类型的绝对值函数
+			if(motor_speed<1)
+				motor_speed=1;
+			angle_close_loop_with_speed(i, q[i], motor_speed);
+			q_last[i] = q[i];
+		}
+		else if(i == 6)
+		{
+			if((fabs(q[i]-q_last[i]))>=0.05)
+			{
+				q[i] = q[i]/pi*180;
+//				q_next[i] = q_next[i]/pi*180;
+				motor_speed = fabs((q[i]-q_last[i])/control_interval_time);//fabs:float类型的绝对值函数
+				if(motor_speed<1)
+				  motor_speed=1;
+				angle_close_loop_with_speed(i, q[i], motor_speed);
+				q_last[i] = q[i];
+			}
 		}
 		else
 		{
 			q[i] = q[i]/pi*180;
+//			q_next[i] = q_next[i]/pi*180;
 			motor_speed = fabs((q[i]-q_last[i])/control_interval_time);//fabs:float类型的绝对值函数
+			if(motor_speed<1)
+				motor_speed=1;
 			angle_close_loop_with_speed(i, q[i], motor_speed);
 			q_last[i] = q[i];
+//			if(i==6)
+//				printf("MOTORSPEED6=%.3f, MOTORpos=%.3f\r\n", motor_speed, q[6]);
 		}
 	}
-	if(++motor_control_k == 2000)
+//	printf("k=%d", motor_control_k);
+	if(++motor_control_k > 400)
 		HAL_TIM_Base_Stop_IT(&htim2);
 }
 

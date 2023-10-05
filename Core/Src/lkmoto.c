@@ -7,11 +7,11 @@
 #include "ids830can.h"
 #include "tim.h"
 
-void ms_Delay(uint16_t t_ms)
-{
-	uint32_t t=t_ms*8000;//要考虑主频3127
-	while(t--);
-}
+//void ms_Delay(uint16_t t_ms)
+//{
+//	uint32_t t=t_ms*8000;//要考虑主频3127
+//	while(t--);
+//}
 
 uint8_t CAN_motor_data[8] = {0};//电机接收数据
 uint8_t CAN_motor_angle[8] = {0};//电机接收角度数据
@@ -1076,15 +1076,15 @@ void ske_base_position(void)
 	for(int i=1; i<=6; i++)
 	{
 		if(i == 1)
-			LinearActuator_startRun_maxspeed_position(i, 0, 10);
+			LinearActuator_startRun_maxspeed_position(i, 0, 30);
 		
 		else if(i == 4)
-			angle_close_loop_with_speed(i, -90, 10);
+			angle_close_loop_with_speed(i, 0, 30);
 		else if(i == 5)
-			angle_close_loop_with_speed(i, 90, 10);
+			angle_close_loop_with_speed(i, 0, 30);
 		
 		else
-			angle_close_loop_with_speed(i, 0, 10);
+			angle_close_loop_with_speed(i, 0, 30);
 	}
 	Delay_ms(5000);
 }

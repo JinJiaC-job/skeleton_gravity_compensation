@@ -3,60 +3,87 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ¦ÌVision V5.37.0.0
-Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: jj kk, cc, LIC=ZB4EI-TRG3F-LQX0Q-NWARQ-8VHYA-P51D8
+IDE-Version: ¦ÌVision V5.18.0.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: jj Administrator, jj, LIC=65ISZ-J71JQ-JJY6S-LZLFV-6KJDQ-8DB0H
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.37.0.0
-Toolchain Path:  G:\APPs\Keil_v5\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.18
-Assembler:       Armasm.exe V6.18
-Linker/Locator:  ArmLink.exe V6.18
-Library Manager: ArmAr.exe V6.18
-Hex Converter:   FromElf.exe V6.18
-CPU DLL:         SARMCM3.DLL V5.37.0.0
-Dialog DLL:      DCM.DLL V1.17.5.0
-Target DLL:      CMSIS_AGDI.dll V1.33.12.0
-Dialog DLL:      TCM.DLL V1.56.1.0
+Toolchain:       MDK-ARM Plus  Version: 5.14.0.0
+Toolchain Path:  d:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         SARMCM3.DLL V5.14.0.0
+Dialog DLL:      DCM.DLL V1.13.1.0
+Target DLL:      CMSIS_AGDI.dll V1.21.0.0
+Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
-E:\ResourceCenter\code\Ske_Gcompensation\MDK-ARM\LKmotors_CAN.uvprojx
-Project File Date:  07/13/2023
+E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\LKmotors_CAN.uvprojx
+Project File Date:  10/05/2023
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.18', folder: 'G:\APPs\Keil_v5\ARM\ARMCLANG\Bin'
-Build target 'LKmotors_CAN'
+*** Using Compiler 'V5.05 update 1 (build 106)', folder: 'd:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'LKmotors_CAN'
+assembling startup_stm32f103xe.s...
+compiling Sensors_reading.c...
+compiling adc.c...
+compiling stm32f1xx_it.c...
 compiling ids830can.c...
 compiling lkmoto.c...
+..\Core\Src\lkmoto.c(505): warning:  #177-D: variable "motor_speed_float" was declared but never referenced
+  	float motor_current_float=0, motor_speed_float=0;
+..\Core\Src\lkmoto.c: 1 warning, 0 errors
+compiling main.c...
+compiling tim.c...
+compiling gpio.c...
+compiling usart.c...
+compiling fourier_series_traj_exciting.c...
+compiling can.c...
+compiling stm32f1xx_hal.c...
+compiling stm32f1xx_hal_pwr.c...
+compiling stm32f1xx_hal_gpio_ex.c...
+compiling stm32f1xx_hal_adc.c...
+compiling stm32f1xx_hal_rcc_ex.c...
+compiling stm32f1xx_hal_dma.c...
+compiling stm32f1xx_hal_msp.c...
+compiling stm32f1xx_hal_cortex.c...
+compiling stm32f1xx_hal_gpio.c...
+compiling stm32f1xx_hal_rcc.c...
+compiling stm32f1xx_hal_adc_ex.c...
+compiling stm32f1xx_hal_can.c...
+compiling system_stm32f1xx.c...
+compiling stm32f1xx_hal_flash_ex.c...
+compiling stm32f1xx_hal_flash.c...
+compiling stm32f1xx_hal_exti.c...
+compiling stm32f1xx_hal_uart.c...
+compiling stm32f1xx_hal_tim_ex.c...
+compiling stm32f1xx_hal_tim.c...
 linking...
-Program Size: Code=21808 RO-data=684 RW-data=328 ZI-data=1520  
+Program Size: Code=19888 RO-data=648 RW-data=368 ZI-data=1544  
 FromELF: creating hex file...
-"LKmotors_CAN\LKmotors_CAN.axf" - 0 Error(s), 0 Warning(s).
+"LKmotors_CAN\LKmotors_CAN.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
-                ARM.CMSIS.5.9.0
-                CMSIS (Common Microcontroller Software Interface Standard)
-   * Component: CORE Version: 5.6.0
-
-Package Vendor: Keil
-                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.2.0.pack
-                Keil.STM32F1xx_DFP.2.2.0
-                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+                http://www.keil.com/pack/ARM.CMSIS.4.2.0.pack
+                ARM::CMSIS:CORE:3.40.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 3.40.0
 
 <h2>Collection of Component include folders:</h2>
-  ./RTE/_LKmotors_CAN
-  G:/APPs/Keil_v5/ARM/PACK/ARM/CMSIS/5.9.0/CMSIS/Core/Include
-  G:/APPs/Keil_v5/ARM/PACK/Keil/STM32F1xx_DFP/2.2.0/Device/Include
+  E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE
+  d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include
+  d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:5.6.0
-      Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:01
+   * Component: ARM::CMSIS:CORE:3.40.0
+      Source file:   CMSIS\UserCodeTemplates\ARM\ITM_Retarget.c
+Build Time Elapsed:  00:00:08
 </pre>
 </body>
 </html>

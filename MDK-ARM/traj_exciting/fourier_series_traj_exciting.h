@@ -24,6 +24,7 @@ extern uint8_t dof;
 // 6个关节角度信息
 extern float q[7];
 extern float q_last[7];
+extern float q_next[7];
 
 void fourier_series_traj(float time);
 void traj_exciting_init(void);
