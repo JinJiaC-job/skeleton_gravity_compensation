@@ -3,7 +3,7 @@
 <title>Static Call Graph - [LKmotors_CAN\LKmotors_CAN.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image LKmotors_CAN\LKmotors_CAN.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Oct 05 22:58:43 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Oct 05 23:15:33 2023
 <BR><P>
 <H3>Maximum Stack Usage =        360 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -696,12 +696,10 @@ Global Symbols
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readData_pointTopoint
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LinearActuator_read_position
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LinearActuator_read_CurrentandSpeed
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LinearActuator_startRun_maxspeed_position
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ske_base_position
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_status2
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_angle
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_run
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;angle_close_loop_with_speed
 </UL>
 
 <P><STRONG><a name="[73]"></a>Delay_us</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, tim.o(i.Delay_us))
@@ -1261,7 +1259,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c1]"></a>LinearActuator_startRun_maxspeed_position</STRONG> (Thumb, 106 bytes, Stack size 24 bytes, ids830can.o(i.LinearActuator_startRun_maxspeed_position))
+<P><STRONG><a name="[c1]"></a>LinearActuator_startRun_maxspeed_position</STRONG> (Thumb, 98 bytes, Stack size 24 bytes, ids830can.o(i.LinearActuator_startRun_maxspeed_position))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = LinearActuator_startRun_maxspeed_position &rArr; writeData_pointTopoint &rArr; Delay_ms &rArr; Delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
@@ -1270,7 +1268,6 @@ Global Symbols
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writeData_pointTopoint
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_fourier_series_traj
@@ -1543,7 +1540,7 @@ Global Symbols
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
 </UL>
 
-<P><STRONG><a name="[e5]"></a>angle_close_loop_with_speed</STRONG> (Thumb, 234 bytes, Stack size 48 bytes, lkmoto.o(i.angle_close_loop_with_speed))
+<P><STRONG><a name="[e5]"></a>angle_close_loop_with_speed</STRONG> (Thumb, 228 bytes, Stack size 48 bytes, lkmoto.o(i.angle_close_loop_with_speed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = angle_close_loop_with_speed &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
@@ -1552,7 +1549,6 @@ Global Symbols
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_send
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>

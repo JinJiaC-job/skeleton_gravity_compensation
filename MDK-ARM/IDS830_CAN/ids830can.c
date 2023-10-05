@@ -83,7 +83,7 @@ void LinearActuator_startRun_maxspeed_position(uint8_t id, float position, float
 	writeData_pointTopoint(id, 0x00, 0x00, 0x0001, 0x1d, maxspeed);
 	writeData_pointTopoint(id, 0x00, 0x50, ((int32_t)position & 0xffff0000) >> 16, 0x05, (int32_t)position & 0x0000ffff);
 	
-	Delay_ms(Linear_cmd_interval_time);
+//	Delay_ms(Linear_cmd_interval_time);
 }
 
 void LinearActuator_read_position(uint8_t id)

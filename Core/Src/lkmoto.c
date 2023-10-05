@@ -852,7 +852,7 @@ void angle_close_loop_with_speed(uint8_t id, float angleControl, float maxSpeed)
     buf[6] = *((uint8_t *)(&angleControl_int32)+2);
     buf[7] = *((uint8_t *)(&angleControl_int32)+3);
     can_send(buf, id);
-    Delay_ms(command_interval_time);
+//    Delay_ms(command_interval_time);
 }
 
 //(24)
