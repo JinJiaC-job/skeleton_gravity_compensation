@@ -39,3 +39,6 @@ lkmotors_can\tim.o: ./IDS830_CAN/ids830can.h
 lkmotors_can\tim.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 lkmotors_can\tim.o: ./traj_exciting/fourier_series_traj_exciting.h
 lkmotors_can\tim.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+lkmotors_can\tim.o: ../Core/Inc/usart.h
+lkmotors_can\tim.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+lkmotors_can\tim.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

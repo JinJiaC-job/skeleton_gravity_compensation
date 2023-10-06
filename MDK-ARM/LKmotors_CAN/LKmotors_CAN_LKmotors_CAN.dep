@@ -1,6 +1,6 @@
 Dependencies for Project 'LKmotors_CAN', Target 'LKmotors_CAN': (DO NOT MODIFY !)
-F (startup_stm32f103xe.s)(0x651ECEF7)(--cpu Cortex-M3 -g --apcs=interwork --pd "__MICROLIB SETA 1"-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include--pd "__UVISION_VERSION SETA 518" --pd "_RTE_ SETA 1" --pd "STM32F10X_HD SETA 1"--list startup_stm32f103xe.lst --xref -o lkmotors_can\startup_stm32f103xe.o --depend lkmotors_can\startup_stm32f103xe.d)
-F (..\Core\Src\lkmoto.c)(0x651ED243)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\lkmoto.o --omf_browse lkmotors_can\lkmoto.crf --depend lkmotors_can\lkmoto.d)
+F (startup_stm32f103xe.s)(0x651FFB48)(--cpu Cortex-M3 -g --apcs=interwork --pd "__MICROLIB SETA 1"-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include--pd "__UVISION_VERSION SETA 518" --pd "_RTE_ SETA 1" --pd "STM32F10X_HD SETA 1"--list startup_stm32f103xe.lst --xref -o lkmotors_can\startup_stm32f103xe.o --depend lkmotors_can\startup_stm32f103xe.d)
+F (..\Core\Src\lkmoto.c)(0x651ED243)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\lkmoto.o --omf_browse lkmotors_can\lkmoto.crf --depend lkmotors_can\lkmoto.d)
 I (../Core/Inc/lkmoto.h)(0x650BEF93)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
@@ -36,8 +36,8 @@ I (../Core/Inc/can.h)(0x650BEF94)
 I (../Core/Inc/main.h)(0x650BEF93)
 I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (./IDS830_CAN/ids830can.h)(0x650BEF89)
-I (../Core/Inc/tim.h)(0x650BEF91)
-F (.\IDS830_CAN\ids830can.c)(0x651ED21C)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\ids830can.o --omf_browse lkmotors_can\ids830can.crf --depend lkmotors_can\ids830can.d)
+I (../Core/Inc/tim.h)(0x651FFB46)
+F (.\IDS830_CAN\ids830can.c)(0x651ED21C)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\ids830can.o --omf_browse lkmotors_can\ids830can.crf --depend lkmotors_can\ids830can.d)
 I (IDS830_CAN\ids830can.h)(0x650BEF89)
 I (../Core/Inc/can.h)(0x650BEF94)
 I (../Core/Inc/main.h)(0x650BEF93)
@@ -73,9 +73,11 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
 I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (../Core/Inc/lkmoto.h)(0x650BEF93)
-I (../Core/Inc/usart.h)(0x651EC215)
-I (../Core/Inc/tim.h)(0x650BEF91)
-F (.\traj_exciting\fourier_series_traj_exciting.c)(0x6515236C)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\fourier_series_traj_exciting.o --omf_browse lkmotors_can\fourier_series_traj_exciting.crf --depend lkmotors_can\fourier_series_traj_exciting.d)
+I (../Core/Inc/usart.h)(0x651FF94C)
+I (d:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
+I (../Core/Inc/tim.h)(0x651FFB46)
+F (.\traj_exciting\fourier_series_traj_exciting.c)(0x6515236C)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\fourier_series_traj_exciting.o --omf_browse lkmotors_can\fourier_series_traj_exciting.crf --depend lkmotors_can\fourier_series_traj_exciting.d)
 I (../Core/Inc/main.h)(0x650BEF93)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
@@ -114,8 +116,8 @@ I (../Core/Inc/can.h)(0x650BEF94)
 I (./IDS830_CAN/ids830can.h)(0x650BEF89)
 I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (traj_exciting\fourier_series_traj_exciting.h)(0x650BEF5C)
-I (../Core/Inc/tim.h)(0x650BEF91)
-F (.\Sensors_reading\Sensors_reading.c)(0x650BEF5D)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\sensors_reading.o --omf_browse lkmotors_can\sensors_reading.crf --depend lkmotors_can\sensors_reading.d)
+I (../Core/Inc/tim.h)(0x651FFB46)
+F (.\Sensors_reading\Sensors_reading.c)(0x650BEF5D)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\sensors_reading.o --omf_browse lkmotors_can\sensors_reading.crf --depend lkmotors_can\sensors_reading.d)
 I (../Core/Inc/adc.h)(0x650BEF95)
 I (../Core/Inc/main.h)(0x650BEF93)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
@@ -150,7 +152,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
 I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (Sensors_reading\Sensors_reading.h)(0x650BEF5C)
-F (../Core/Src/main.c)(0x651EC215)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\main.o --omf_browse lkmotors_can\main.crf --depend lkmotors_can\main.d)
+F (../Core/Src/main.c)(0x651FFD1A)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\main.o --omf_browse lkmotors_can\main.crf --depend lkmotors_can\main.d)
 I (../Core/Inc/main.h)(0x650BEF93)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
@@ -184,15 +186,17 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
 I (../Core/Inc/adc.h)(0x650BEF95)
 I (../Core/Inc/can.h)(0x650BEF94)
-I (../Core/Inc/tim.h)(0x650BEF91)
-I (../Core/Inc/usart.h)(0x651EC215)
+I (../Core/Inc/tim.h)(0x651FFB46)
+I (../Core/Inc/usart.h)(0x651FF94C)
+I (d:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (../Core/Inc/gpio.h)(0x650BEF94)
 I (../Core/Inc/lkmoto.h)(0x650BEF93)
-I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (./IDS830_CAN/ids830can.h)(0x650BEF89)
 I (./Sensors_reading/Sensors_reading.h)(0x650BEF5C)
 I (./traj_exciting/fourier_series_traj_exciting.h)(0x650BEF5C)
-F (../Core/Src/gpio.c)(0x650BEF90)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\gpio.o --omf_browse lkmotors_can\gpio.crf --depend lkmotors_can\gpio.d)
+F (../Core/Src/gpio.c)(0x650BEF90)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\gpio.o --omf_browse lkmotors_can\gpio.crf --depend lkmotors_can\gpio.d)
 I (../Core/Inc/gpio.h)(0x650BEF94)
 I (../Core/Inc/main.h)(0x650BEF93)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
@@ -225,7 +229,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Core/Src/adc.c)(0x650BEF91)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\adc.o --omf_browse lkmotors_can\adc.crf --depend lkmotors_can\adc.d)
+F (../Core/Src/adc.c)(0x650BEF91)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\adc.o --omf_browse lkmotors_can\adc.crf --depend lkmotors_can\adc.d)
 I (../Core/Inc/adc.h)(0x650BEF95)
 I (../Core/Inc/main.h)(0x650BEF93)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
@@ -258,7 +262,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Core/Src/can.c)(0x650BEF90)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\can.o --omf_browse lkmotors_can\can.crf --depend lkmotors_can\can.d)
+F (../Core/Src/can.c)(0x650BEF90)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\can.o --omf_browse lkmotors_can\can.crf --depend lkmotors_can\can.d)
 I (../Core/Inc/can.h)(0x650BEF94)
 I (../Core/Inc/main.h)(0x650BEF93)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
@@ -291,13 +295,16 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-I (../Core/Inc/usart.h)(0x651EC215)
+I (../Core/Inc/usart.h)(0x651FF94C)
+I (d:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
 I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
+I (../Core/Inc/tim.h)(0x651FFB46)
 I (d:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (../Core/Inc/lkmoto.h)(0x650BEF93)
 I (./IDS830_CAN/ids830can.h)(0x650BEF89)
-F (../Core/Src/tim.c)(0x651EC926)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\tim.o --omf_browse lkmotors_can\tim.crf --depend lkmotors_can\tim.d)
-I (../Core/Inc/tim.h)(0x650BEF91)
+F (../Core/Src/tim.c)(0x6520012B)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\tim.o --omf_browse lkmotors_can\tim.crf --depend lkmotors_can\tim.d)
+I (../Core/Inc/tim.h)(0x651FFB46)
 I (../Core/Inc/main.h)(0x650BEF93)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
@@ -335,8 +342,11 @@ I (./IDS830_CAN/ids830can.h)(0x650BEF89)
 I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (./traj_exciting/fourier_series_traj_exciting.h)(0x650BEF5C)
 I (d:\Keil_v5\ARM\ARMCC\include\math.h)(0x5475F2FE)
-F (../Core/Src/usart.c)(0x651EC214)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\usart.o --omf_browse lkmotors_can\usart.crf --depend lkmotors_can\usart.d)
-I (../Core/Inc/usart.h)(0x651EC215)
+I (../Core/Inc/usart.h)(0x651FF94C)
+I (d:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
+F (../Core/Src/usart.c)(0x651FFC5C)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\usart.o --omf_browse lkmotors_can\usart.crf --depend lkmotors_can\usart.d)
+I (../Core/Inc/usart.h)(0x651FF94C)
 I (../Core/Inc/main.h)(0x650BEF93)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
@@ -368,8 +378,11 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
+I (d:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
 I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
-F (../Core/Src/stm32f1xx_it.c)(0x650BEF8E)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_it.o --omf_browse lkmotors_can\stm32f1xx_it.crf --depend lkmotors_can\stm32f1xx_it.d)
+I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
+I (../Core/Inc/tim.h)(0x651FFB46)
+F (../Core/Src/stm32f1xx_it.c)(0x651FFB46)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_it.o --omf_browse lkmotors_can\stm32f1xx_it.crf --depend lkmotors_can\stm32f1xx_it.d)
 I (../Core/Inc/main.h)(0x650BEF93)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
@@ -401,8 +414,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-I (../Core/Inc/stm32f1xx_it.h)(0x650BEF94)
-F (../Core/Src/stm32f1xx_hal_msp.c)(0x650BEF8F)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_msp.o --omf_browse lkmotors_can\stm32f1xx_hal_msp.crf --depend lkmotors_can\stm32f1xx_hal_msp.d)
+I (../Core/Inc/stm32f1xx_it.h)(0x651FFB46)
+F (../Core/Src/stm32f1xx_hal_msp.c)(0x650BEF8F)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_msp.o --omf_browse lkmotors_can\stm32f1xx_hal_msp.crf --depend lkmotors_can\stm32f1xx_hal_msp.d)
 I (../Core/Inc/main.h)(0x650BEF93)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
@@ -434,7 +447,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_gpio_ex.o --omf_browse lkmotors_can\stm32f1xx_hal_gpio_ex.crf --depend lkmotors_can\stm32f1xx_hal_gpio_ex.d)
+F (.\ESP8266\esp8266.c)(0x65201B30)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\esp8266.o --omf_browse lkmotors_can\esp8266.crf --depend lkmotors_can\esp8266.d)
+I (ESP8266\esp8266.h)(0x65201A19)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -465,7 +479,14 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_adc.o --omf_browse lkmotors_can\stm32f1xx_hal_adc.crf --depend lkmotors_can\stm32f1xx_hal_adc.d)
+I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
+I (d:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (../Core/Inc/usart.h)(0x651FF94C)
+I (../Core/Inc/main.h)(0x650BEF93)
+I (d:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
+I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (../Core/Inc/tim.h)(0x651FFB46)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_gpio_ex.o --omf_browse lkmotors_can\stm32f1xx_hal_gpio_ex.crf --depend lkmotors_can\stm32f1xx_hal_gpio_ex.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -496,7 +517,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_adc_ex.o --omf_browse lkmotors_can\stm32f1xx_hal_adc_ex.crf --depend lkmotors_can\stm32f1xx_hal_adc_ex.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_adc.o --omf_browse lkmotors_can\stm32f1xx_hal_adc.crf --depend lkmotors_can\stm32f1xx_hal_adc.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -527,7 +548,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal.o --omf_browse lkmotors_can\stm32f1xx_hal.crf --depend lkmotors_can\stm32f1xx_hal.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_adc_ex.o --omf_browse lkmotors_can\stm32f1xx_hal_adc_ex.crf --depend lkmotors_can\stm32f1xx_hal_adc_ex.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -558,7 +579,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_rcc.o --omf_browse lkmotors_can\stm32f1xx_hal_rcc.crf --depend lkmotors_can\stm32f1xx_hal_rcc.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal.o --omf_browse lkmotors_can\stm32f1xx_hal.crf --depend lkmotors_can\stm32f1xx_hal.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -589,7 +610,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_rcc_ex.o --omf_browse lkmotors_can\stm32f1xx_hal_rcc_ex.crf --depend lkmotors_can\stm32f1xx_hal_rcc_ex.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_rcc.o --omf_browse lkmotors_can\stm32f1xx_hal_rcc.crf --depend lkmotors_can\stm32f1xx_hal_rcc.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -620,7 +641,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_gpio.o --omf_browse lkmotors_can\stm32f1xx_hal_gpio.crf --depend lkmotors_can\stm32f1xx_hal_gpio.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_rcc_ex.o --omf_browse lkmotors_can\stm32f1xx_hal_rcc_ex.crf --depend lkmotors_can\stm32f1xx_hal_rcc_ex.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -651,7 +672,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_dma.o --omf_browse lkmotors_can\stm32f1xx_hal_dma.crf --depend lkmotors_can\stm32f1xx_hal_dma.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_gpio.o --omf_browse lkmotors_can\stm32f1xx_hal_gpio.crf --depend lkmotors_can\stm32f1xx_hal_gpio.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -682,7 +703,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_cortex.o --omf_browse lkmotors_can\stm32f1xx_hal_cortex.crf --depend lkmotors_can\stm32f1xx_hal_cortex.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_dma.o --omf_browse lkmotors_can\stm32f1xx_hal_dma.crf --depend lkmotors_can\stm32f1xx_hal_dma.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -713,7 +734,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_pwr.o --omf_browse lkmotors_can\stm32f1xx_hal_pwr.crf --depend lkmotors_can\stm32f1xx_hal_pwr.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_cortex.o --omf_browse lkmotors_can\stm32f1xx_hal_cortex.crf --depend lkmotors_can\stm32f1xx_hal_cortex.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -744,7 +765,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_flash.o --omf_browse lkmotors_can\stm32f1xx_hal_flash.crf --depend lkmotors_can\stm32f1xx_hal_flash.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_pwr.o --omf_browse lkmotors_can\stm32f1xx_hal_pwr.crf --depend lkmotors_can\stm32f1xx_hal_pwr.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -775,7 +796,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_flash_ex.o --omf_browse lkmotors_can\stm32f1xx_hal_flash_ex.crf --depend lkmotors_can\stm32f1xx_hal_flash_ex.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_flash.o --omf_browse lkmotors_can\stm32f1xx_hal_flash.crf --depend lkmotors_can\stm32f1xx_hal_flash.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -806,7 +827,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_exti.o --omf_browse lkmotors_can\stm32f1xx_hal_exti.crf --depend lkmotors_can\stm32f1xx_hal_exti.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_flash_ex.o --omf_browse lkmotors_can\stm32f1xx_hal_flash_ex.crf --depend lkmotors_can\stm32f1xx_hal_flash_ex.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -837,7 +858,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_can.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_can.o --omf_browse lkmotors_can\stm32f1xx_hal_can.crf --depend lkmotors_can\stm32f1xx_hal_can.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_exti.o --omf_browse lkmotors_can\stm32f1xx_hal_exti.crf --depend lkmotors_can\stm32f1xx_hal_exti.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -868,7 +889,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_tim.o --omf_browse lkmotors_can\stm32f1xx_hal_tim.crf --depend lkmotors_can\stm32f1xx_hal_tim.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_can.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_can.o --omf_browse lkmotors_can\stm32f1xx_hal_can.crf --depend lkmotors_can\stm32f1xx_hal_can.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -899,7 +920,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_tim_ex.o --omf_browse lkmotors_can\stm32f1xx_hal_tim_ex.crf --depend lkmotors_can\stm32f1xx_hal_tim_ex.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_tim.o --omf_browse lkmotors_can\stm32f1xx_hal_tim.crf --depend lkmotors_can\stm32f1xx_hal_tim.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -930,7 +951,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_uart.o --omf_browse lkmotors_can\stm32f1xx_hal_uart.crf --depend lkmotors_can\stm32f1xx_hal_uart.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_tim_ex.o --omf_browse lkmotors_can\stm32f1xx_hal_tim_ex.crf --depend lkmotors_can\stm32f1xx_hal_tim_ex.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
@@ -961,7 +982,38 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
-F (../Core/Src/system_stm32f1xx.c)(0x650BEF8E)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\system_stm32f1xx.o --omf_browse lkmotors_can\system_stm32f1xx.crf --depend lkmotors_can\system_stm32f1xx.d)
+F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c)(0x61BAEBD4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\stm32f1xx_hal_uart.o --omf_browse lkmotors_can\stm32f1xx_hal_uart.crf --depend lkmotors_can\stm32f1xx_hal_uart.d)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x61BAEBD4)
+I (../Core/Inc/stm32f1xx_hal_conf.h)(0x650BEF92)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x61BAEBD4)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x61BAEBD4)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h)(0x61BAEBD4)
+I (../Drivers/CMSIS/Include/core_cm3.h)(0x61BAEBCD)
+I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x61BAEBCD)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x61BAEBCD)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x61BAEBCD)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x61BAEBD4)
+I (d:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x61BAEBD4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x61BAEBD4)
+F (../Core/Src/system_stm32f1xx.c)(0x650BEF8E)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../Core/Src -I ./IDS830_CAN -I ./traj_exciting -I ./Sensors_reading -I .\ESP8266-I E:\github\my_repo\skeleton_gravity_compensation\MDK-ARM\RTE-I d:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o lkmotors_can\system_stm32f1xx.o --omf_browse lkmotors_can\system_stm32f1xx.crf --depend lkmotors_can\system_stm32f1xx.d)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x61BAEBD4)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h)(0x61BAEBD4)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x61BAEBCD)

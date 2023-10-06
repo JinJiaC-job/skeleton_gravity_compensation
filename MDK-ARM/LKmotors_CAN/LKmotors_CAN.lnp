@@ -12,6 +12,7 @@
 "lkmotors_can\usart.o"
 "lkmotors_can\stm32f1xx_it.o"
 "lkmotors_can\stm32f1xx_hal_msp.o"
+"lkmotors_can\esp8266.o"
 "lkmotors_can\stm32f1xx_hal_gpio_ex.o"
 "lkmotors_can\stm32f1xx_hal_adc.o"
 "lkmotors_can\stm32f1xx_hal_adc_ex.o"

@@ -35,10 +35,12 @@ lkmotors_can\main.o: ../Core/Inc/adc.h
 lkmotors_can\main.o: ../Core/Inc/can.h
 lkmotors_can\main.o: ../Core/Inc/tim.h
 lkmotors_can\main.o: ../Core/Inc/usart.h
+lkmotors_can\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+lkmotors_can\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+lkmotors_can\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 lkmotors_can\main.o: ../Core/Inc/gpio.h
 lkmotors_can\main.o: ../Core/Inc/lkmoto.h
 lkmotors_can\main.o: ../Core/Inc/lkmoto.h
-lkmotors_can\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 lkmotors_can\main.o: ./IDS830_CAN/ids830can.h
 lkmotors_can\main.o: ./Sensors_reading/Sensors_reading.h
 lkmotors_can\main.o: ./traj_exciting/fourier_series_traj_exciting.h

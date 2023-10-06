@@ -35,6 +35,13 @@ int fgetc(FILE *f)
   HAL_UART_Receive(&huart1, &ch, 1, 0xffff);
   return ch;
 }
+
+ uint8_t temp_rx;
+ uint8_t  USART3_RX_BUF[USART3_MAX_RECV_LEN]; 		//接收缓冲,最大USART3_MAX_RECV_LEN字节
+ uint8_t  USART3_TX_BUF[USART3_MAX_SEND_LEN]; 		//发送缓冲,最大USART3_MAX_SEND_LEN字节
+ uint8_t  USART1_TX_BUF[USART1_MAX_SEND_LEN];
+ uint16_t USART3_RX_STA=0;
+
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart1;
@@ -156,6 +163,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+    /* USART3 interrupt Init */
+    HAL_NVIC_SetPriority(USART3_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(USART3_IRQn);
   /* USER CODE BEGIN USART3_MspInit 1 */
 
   /* USER CODE END USART3_MspInit 1 */
@@ -199,6 +209,8 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     */
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_10|GPIO_PIN_11);
 
+    /* USART3 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(USART3_IRQn);
   /* USER CODE BEGIN USART3_MspDeInit 1 */
 
   /* USER CODE END USART3_MspDeInit 1 */
@@ -206,5 +218,60 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if(huart->Instance==USART3)
+	{
+		if((USART3_RX_STA&(1<<15))==0)//接收完的一批数据,还没有被处理,则不再接收其他数据
+			{ 
+				if(USART3_RX_STA<USART3_MAX_RECV_LEN)	//还可以接收数据
+				{
+					__HAL_TIM_SET_COUNTER(&htim4,0);         				//计数器清空	
+					if(USART3_RX_STA==0) 				//使能定时器4的中断 
+					{
+						__HAL_TIM_ENABLE(&htim4);     			//使能定时器4
+					}
+						USART3_RX_BUF[USART3_RX_STA++]=temp_rx;	//记录接收到的值	 
+				}
+				else 
+				{
+					USART3_RX_STA|=1<<15;				//强制标记接收完成
+				} 
+			}
+	}
+}
+
+
+void u3_printf(char* fmt,...)  
+{  
+	uint8_t i,j; 
+	va_list ap; 
+	va_start(ap,fmt);
+	vsprintf((char*)USART3_TX_BUF,fmt,ap);
+	va_end(ap);
+	i=strlen((const char*)USART3_TX_BUF);		//此次发送数据的长度
+	for(j=0;j<i;j++)							//循环发送数据
+	{
+		while((USART3->SR&0X40)==0);			//循环发送,直到发送完毕   
+		USART3->DR=USART3_TX_BUF[j];  
+	} 
+}
+
+
+void u1_printf(char* fmt,...)  
+{  
+	uint8_t i,j; 
+	va_list ap; 
+	va_start(ap,fmt);
+	vsprintf((char*)USART1_TX_BUF,fmt,ap);
+	va_end(ap);
+	i=strlen((const char*)USART1_TX_BUF);		//此次发送数据的长度
+	for(j=0;j<i;j++)							//循环发送数据
+	{
+		while((USART1->SR&0X40)==0);			//循环发送,直到发送完毕   
+		USART1->DR=USART1_TX_BUF[j];  
+	} 
+}
 
 /* USER CODE END 1 */

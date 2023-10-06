@@ -37,4 +37,6 @@ lkmotors_can\ids830can.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 lkmotors_can\ids830can.o: ../Core/Inc/lkmoto.h
 lkmotors_can\ids830can.o: ../Core/Inc/lkmoto.h
 lkmotors_can\ids830can.o: ../Core/Inc/usart.h
+lkmotors_can\ids830can.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+lkmotors_can\ids830can.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 lkmotors_can\ids830can.o: ../Core/Inc/tim.h
