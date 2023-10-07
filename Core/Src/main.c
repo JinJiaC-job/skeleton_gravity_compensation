@@ -106,8 +106,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	
 	//WIFIÄ£¿é³õÊ¼»¯
-	HAL_UART_Receive_IT(&huart3, &temp_rx, 1);
-	HAL_TIM_Base_Start_IT(&htim4);
+//	HAL_UART_Receive_IT(&huart3, &temp_rx, 1);
+//	HAL_TIM_Base_Start_IT(&htim4);
 	
 	CAN_Filter_Init();
 	traj_exciting_init();

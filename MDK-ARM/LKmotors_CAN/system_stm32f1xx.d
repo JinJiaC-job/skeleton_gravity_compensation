@@ -2,7 +2,7 @@ lkmotors_can\system_stm32f1xx.o: ../Core/Src/system_stm32f1xx.c
 lkmotors_can\system_stm32f1xx.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
 lkmotors_can\system_stm32f1xx.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h
 lkmotors_can\system_stm32f1xx.o: ../Drivers/CMSIS/Include/core_cm3.h
-lkmotors_can\system_stm32f1xx.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+lkmotors_can\system_stm32f1xx.o: D:\APPs\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 lkmotors_can\system_stm32f1xx.o: ../Drivers/CMSIS/Include/cmsis_version.h
 lkmotors_can\system_stm32f1xx.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 lkmotors_can\system_stm32f1xx.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
@@ -13,7 +13,7 @@ lkmotors_can\system_stm32f1xx.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_h
 lkmotors_can\system_stm32f1xx.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
 lkmotors_can\system_stm32f1xx.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
 lkmotors_can\system_stm32f1xx.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-lkmotors_can\system_stm32f1xx.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+lkmotors_can\system_stm32f1xx.o: D:\APPs\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 lkmotors_can\system_stm32f1xx.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 lkmotors_can\system_stm32f1xx.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 lkmotors_can\system_stm32f1xx.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h

@@ -1,9 +1,5 @@
 --cpu Cortex-M3
 "lkmotors_can\startup_stm32f103xe.o"
-"lkmotors_can\lkmoto.o"
-"lkmotors_can\ids830can.o"
-"lkmotors_can\fourier_series_traj_exciting.o"
-"lkmotors_can\sensors_reading.o"
 "lkmotors_can\main.o"
 "lkmotors_can\gpio.o"
 "lkmotors_can\adc.o"
@@ -13,6 +9,10 @@
 "lkmotors_can\stm32f1xx_it.o"
 "lkmotors_can\stm32f1xx_hal_msp.o"
 "lkmotors_can\esp8266.o"
+"lkmotors_can\ids830can.o"
+"lkmotors_can\sensors_reading.o"
+"lkmotors_can\fourier_series_traj_exciting.o"
+"lkmotors_can\lkmoto.o"
 "lkmotors_can\stm32f1xx_hal_gpio_ex.o"
 "lkmotors_can\stm32f1xx_hal_adc.o"
 "lkmotors_can\stm32f1xx_hal_adc_ex.o"
@@ -32,6 +32,6 @@
 "lkmotors_can\stm32f1xx_hal_uart.o"
 "lkmotors_can\system_stm32f1xx.o"
 --library_type=microlib --strict --scatter "LKmotors_CAN\LKmotors_CAN.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "LKmotors_CAN.map" -o LKmotors_CAN\LKmotors_CAN.axf

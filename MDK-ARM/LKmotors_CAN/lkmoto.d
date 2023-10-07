@@ -7,14 +7,14 @@ lkmotors_can\lkmoto.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
 lkmotors_can\lkmoto.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
 lkmotors_can\lkmoto.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h
 lkmotors_can\lkmoto.o: ../Drivers/CMSIS/Include/core_cm3.h
-lkmotors_can\lkmoto.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+lkmotors_can\lkmoto.o: D:\APPs\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 lkmotors_can\lkmoto.o: ../Drivers/CMSIS/Include/cmsis_version.h
 lkmotors_can\lkmoto.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 lkmotors_can\lkmoto.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 lkmotors_can\lkmoto.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 lkmotors_can\lkmoto.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 lkmotors_can\lkmoto.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-lkmotors_can\lkmoto.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+lkmotors_can\lkmoto.o: D:\APPs\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 lkmotors_can\lkmoto.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 lkmotors_can\lkmoto.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 lkmotors_can\lkmoto.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
@@ -34,6 +34,6 @@ lkmotors_can\lkmoto.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 lkmotors_can\lkmoto.o: ../Core/Inc/can.h
 lkmotors_can\lkmoto.o: ../Core/Inc/main.h
 lkmotors_can\lkmoto.o: ../Core/Inc/lkmoto.h
-lkmotors_can\lkmoto.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-lkmotors_can\lkmoto.o: ./IDS830_CAN/ids830can.h
+lkmotors_can\lkmoto.o: D:\APPs\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+lkmotors_can\lkmoto.o: .\IDS830_CAN\ids830can.h
 lkmotors_can\lkmoto.o: ../Core/Inc/tim.h
