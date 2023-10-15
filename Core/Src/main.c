@@ -34,6 +34,7 @@
 #include "ids830can.h"
 #include "Sensors_reading.h"
 #include "fourier_series_traj_exciting.h"
+#include "esp8266.h"
 
 /* USER CODE END Includes */
 
@@ -106,110 +107,119 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	
 	//WIFI模块初始化
-//	HAL_UART_Receive_IT(&huart3, &temp_rx, 1);
-//	HAL_TIM_Base_Start_IT(&htim4);
+	HAL_UART_Receive_IT(&huart3, &temp_rx, 1);
+	HAL_TIM_Base_Start_IT(&htim4);
 	
-	CAN_Filter_Init();
-	traj_exciting_init();
-	
-//运行电机motor1~motor5
- 	for(int i=2;i<=6;i++)
- 	{
- 		motor_run(i);
- 	}
-
-////写入当前位置到ROM作为零点(多次写入会影响芯片寿命，不建议频繁使用)
-// 	HAL_Delay(1000);
-// 	for(int i=1;i<=6;i++)
-// 	{
-// 		write_current_position_to_rom(i);
-// 		HAL_Delay(500);
-// 	}
-//	printf("zero point set successfully!");
-	
-//外骨骼初始位置	
-  ske_base_position();
-
-//先读取一次各关节数据	
-	for(int i=1; i<=6; i++)
+	if(esp8266_client_config())
 	{
-		if(i == 1)
-		{
-			LinearActuator_read_position(i);
-			LinearActuator_read_CurrentandSpeed(i);
-			pressure_SensorReading();
-		}
-		else
-			read_status2(i);
-			read_angle(i);
+		printf("WIFI模块客户端配置失败！\r\n");
 	}
 	
-//开启定时器中断：每隔0.05s发送一次控制命令
-	HAL_TIM_Base_Start_IT(&htim2);
-  printf("start!!!\n");
+//	CAN_Filter_Init();
+//	traj_exciting_init();
+//	
+////运行电机motor1~motor5
+// 	for(int i=2;i<=6;i++)
+// 	{
+// 		motor_run(i);
+// 	}
+
+#ifdef SET_ZERO_POSITION
+//写入当前位置到ROM作为零点(多次写入会影响芯片寿命，不建议频繁使用)
+ 	HAL_Delay(1000);
+ 	for(int i=1;i<=6;i++)
+ 	{
+ 		write_current_position_to_rom(i);
+ 		HAL_Delay(500);
+ 	}
+	printf("zero point set successfully!");
+#endif
+
+////外骨骼初始位置	
+//  ske_base_position();
+
+////先读取一次各关节数据	
+//	for(int i=1; i<=6; i++)
+//	{
+//		if(i == 1)
+//		{
+//			LinearActuator_read_position(i);
+//			LinearActuator_read_CurrentandSpeed(i);
+//			pressure_SensorReading();
+//		}
+//		else
+//			read_status2(i);
+//			read_angle(i);
+//	}
+//	
+////开启定时器中断：每隔0.05s发送一次控制命令
+//	HAL_TIM_Base_Start_IT(&htim2);
+//  printf("start!!!\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	
   while (1)
   {
-		for(int i=1; i<=6; i++)
-		{
-			if(i == 1)
-			{
-				LinearActuator_read_position(i);
-				LinearActuator_read_CurrentandSpeed(i);
-				pressure_SensorReading();
-			}
-			else
-				read_status2(i);
-			  read_angle(i);
-		}
-		if(motor_control_k > 400)
-		{
-			break;
-		}
+//		esp8266_Connect_IOTServer();
+//		for(int i=1; i<=6; i++)
+//		{
+//			if(i == 1)
+//			{
+//				LinearActuator_read_position(i);
+//				LinearActuator_read_CurrentandSpeed(i);
+//				pressure_SensorReading();
+//			}
+//			else
+//				read_status2(i);
+//			  read_angle(i);
+//		}
+//		if(motor_control_k > 400)
+//		{
+//			break;
+//		}
 		
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
   }
-	HAL_Delay(500);
+//	HAL_Delay(500);
 
-	for(int i=1; i<=6; i++)
-	{
-		if(i == 1)
-			LinearActuator_startRun_maxspeed_position(i, 0, 30);
-		
-		else if(i == 4)
-			angle_close_loop_with_speed(i, 0, 30);
-		else if(i == 5)
-			angle_close_loop_with_speed(i, 0, 30);
-		else if(i == 6)
-			angle_close_loop_with_speed(i, 0, 30);
-		
-		else
-			angle_close_loop_with_speed(i, 0, 30);
-	}
-	for(int count=1; count<40; count++)
-	{
-		for(int i=1; i<=6; i++)
-		{
-			if(i == 1)
-			{
-				LinearActuator_read_position(i);
-				LinearActuator_read_CurrentandSpeed(i);
-				pressure_SensorReading();
-			}
-			else
-				read_status2(i);
-			  read_angle(i);
-		}
-		HAL_Delay(100);
-	}
+//	for(int i=1; i<=6; i++)
+//	{
+//		if(i == 1)
+//			LinearActuator_startRun_maxspeed_position(i, 0, 30);
+//		
+//		else if(i == 4)
+//			angle_close_loop_with_speed(i, 0, 30);
+//		else if(i == 5)
+//			angle_close_loop_with_speed(i, 0, 30);
+//		else if(i == 6)
+//			angle_close_loop_with_speed(i, 0, 30);
+//		
+//		else
+//			angle_close_loop_with_speed(i, 0, 30);
+//	}
+//	for(int count=1; count<40; count++)
+//	{
+//		for(int i=1; i<=6; i++)
+//		{
+//			if(i == 1)
+//			{
+//				LinearActuator_read_position(i);
+//				LinearActuator_read_CurrentandSpeed(i);
+//				pressure_SensorReading();
+//			}
+//			else
+//				read_status2(i);
+//			  read_angle(i);
+//		}
+//		HAL_Delay(100);
+//	}
 
-	printf("exciting traj experiment end!!!\n");
+//	printf("exciting traj experiment end!!!\n");
 	
   /* USER CODE END 3 */
 }

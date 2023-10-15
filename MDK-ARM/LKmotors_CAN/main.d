@@ -44,3 +44,5 @@ lkmotors_can\main.o: ../Core/Inc/lkmoto.h
 lkmotors_can\main.o: .\IDS830_CAN\ids830can.h
 lkmotors_can\main.o: .\Sensors_reading\Sensors_reading.h
 lkmotors_can\main.o: .\traj_exciting\fourier_series_traj_exciting.h
+lkmotors_can\main.o: .\ESP8266\esp8266.h
+lkmotors_can\main.o: D:\APPs\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

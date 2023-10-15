@@ -121,7 +121,6 @@ uint8_t esp8266_quit_trans(void)
 	return esp8266_send_cmd("AT","OK",20);//退出透传判断.
 }
 
-
 uint8_t esp8266_Connect_IOTServer(void)
 {
 	u1_printf("准备配置模块\r\n");
@@ -169,10 +168,10 @@ uint8_t esp8266_Connect_IOTServer(void)
 		return 2;
 	}else u1_printf("重启成功，等待三秒\r\n");
 	
-	Delay_ms(1000);
-	Delay_ms(1000);
-	Delay_ms(1000);
-	Delay_ms(1000);
+	HAL_Delay(1000);
+	HAL_Delay(1000);
+	HAL_Delay(1000);
+	HAL_Delay(1000);
 	
 	
 	u1_printf("准备取消自动连接\r\n");
@@ -189,8 +188,8 @@ uint8_t esp8266_Connect_IOTServer(void)
 		return 4;
 	}else u1_printf("连接路由器成功\r\n");
 	
-	Delay_ms(1000);
-	Delay_ms(1000);
+	HAL_Delay(1000);
+	HAL_Delay(1000);
 	
 	
 	u1_printf("准备开启DHCP\r\n");
@@ -243,13 +242,12 @@ uint8_t esp8266_Connect_IOTServer(void)
 	
 	
 	while(1){
-		Delay_ms(1000);
+		HAL_Delay(1000);
 		//esp8266_send_cmd("AT+CIPSEND","OK",200);  //发送指定长度的数据
 		u3_printf("This is a message\r\n");
 	}
-//	return 0;
+	return 0;
 }
-
 
 /*
 
@@ -267,7 +265,7 @@ uint8_t esp8266_client_config(void)
 	esp8266_send_cmd("AT","OK",50); //检查WIFI模块是否在线
 	
 	u1_printf("准备设置STA模式\r\n");
-	if(esp8266_send_cmd("AT+CWMODE=1","OK",50)) //1.Station模式 2.Ap模式 3.兼容1.2两个模式
+	if(esp8266_send_cmd("AT+CWMODE=1","OK",100)) //1.Station模式 2.Ap模式 3.兼容1.2两个模式
 	{
 		u1_printf("设置STA模式失败准备重启\r\n");
 		return 1;
@@ -330,12 +328,12 @@ uint8_t esp8266_server_config(void)
 	}else u1_printf("重启成功，等待四秒\r\n");
 	Delay_ms(4000);
 	
-	u1_printf("准备启动单连接\r\n");
-	if(esp8266_send_cmd("AT+CIPMUX=0","OK",50)) //0：单连接，1：多连接
+	u1_printf("准备启动多连接\r\n");
+	if(esp8266_send_cmd("AT+CIPMUX=1","OK",50)) //0：单连接，1：多连接
 	{
-		u1_printf("启动单连接失败，等待重启\r\n");
+		u1_printf("启动多连接失败，等待重启\r\n");
 		return 3;
-	}else u1_printf("启动单连接成功\r\n");
+	}else u1_printf("启动多连接成功\r\n");
 	
 	u1_printf("准备建立服务器\r\n");
 	if(esp8266_Set_PORTNUM()) //建立服务器server指令	

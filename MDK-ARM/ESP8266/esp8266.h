@@ -9,7 +9,7 @@
 #define SSID "JJCWIFI" //WIFI名
 #define PASS "password6666"   //WIFI密码
 
-#define IPBUF "192.168.0.7"   //IP地址
+#define IPBUF "192.168.4.1"   //IP地址
 #define PORTNUM "8086"        //端口号
 
 uint8_t esp8266_send_cmd(uint8_t *cmd, uint8_t *ack, uint16_t waittime);
@@ -22,7 +22,7 @@ uint8_t esp8266_Connect_Server(void);
 uint8_t esp8266_server_config(void);
 uint8_t esp8266_quit_trans(void);
 
-
+uint8_t esp8266_quit_trans(void);
 
 #endif
 

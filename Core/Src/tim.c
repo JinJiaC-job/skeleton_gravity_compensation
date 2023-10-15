@@ -280,8 +280,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	if(htim->Instance == TIM4)
   {
 		USART3_RX_STA|=1<<15;	//标记接收完成
-		__HAL_TIM_CLEAR_FLAG(&htim2,TIM_EVENTSOURCE_UPDATE );       //清除TIM4更新中断标志  
-		__HAL_TIM_DISABLE(&htim2);     			//关闭定时器4
+//		__HAL_TIM_CLEAR_FLAG(&htim4,TIM_EVENTSOURCE_UPDATE );       //清除TIM4更新中断标志  
+//		__HAL_TIM_DISABLE(&htim4);     			//关闭定时器4
   }
 }
 

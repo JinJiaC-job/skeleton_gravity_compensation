@@ -32,3 +32,8 @@ lkmotors_can\stm32f1xx_it.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_t
 lkmotors_can\stm32f1xx_it.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 lkmotors_can\stm32f1xx_it.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 lkmotors_can\stm32f1xx_it.o: ../Core/Inc/stm32f1xx_it.h
+lkmotors_can\stm32f1xx_it.o: ../Core/Inc/usart.h
+lkmotors_can\stm32f1xx_it.o: D:\APPs\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+lkmotors_can\stm32f1xx_it.o: D:\APPs\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+lkmotors_can\stm32f1xx_it.o: D:\APPs\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+lkmotors_can\stm32f1xx_it.o: ../Core/Inc/tim.h
